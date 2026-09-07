@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derito Digital — Webs y agentes de IA que venden por vos</title>
+<style>
+  :root{
+    --gold1:#a87f1d; --gold2:#d9b64a; --gold3:#f2e2ae;
+    --gold-grad:linear-gradient(135deg,#a87f1d,#d9b64a 55%,#b58a24);
+    --ink:#211d12; --mut:#6f6752;
+    --glass:rgba(255,255,255,.58);
+    --glass-brd:rgba(255,255,255,.85);
+    --gold-line:rgba(200,162,60,.28);
+    --r:22px;
+    --shadow:0 12px 40px rgba(160,130,50,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);line-height:1.6;min-height:100vh;
+    background:
+      radial-gradient(900px 500px at 85% -5%, rgba(217,182,74,.20), transparent 60%),
+      radial-gradient(700px 480px at -10% 15%, rgba(242,226,174,.35), transparent 60%),
+      radial-gradient(800px 600px at 50% 110%, rgba(200,162,60,.12), transparent 60%),
+      linear-gradient(180deg,#ffffff,#fdfbf5 45%,#faf6ea);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  a{color:#9a7418;text-decoration:none}
+
+  /* NAV — vidrio */
+  nav{
+    position:sticky;top:12px;z-index:50;margin:12px 16px 0;
+    border-radius:20px;
+    background:var(--glass);
+    -webkit-backdrop-filter:blur(22px) saturate(180%);
+    backdrop-filter:blur(22px) saturate(180%);
+    border:1px solid var(--glass-brd);
+    box-shadow:0 8px 30px rgba(160,130,50,.10), inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .logo{font-weight:800;font-size:1.15rem;letter-spacing:.3px;color:var(--ink)}
+  .logo span{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  nav .links a{margin-left:22px;font-size:.92rem;color:var(--mut)}
+  nav .links a:hover{color:#a87f1d}
+  .cta{
+    display:inline-block;background:var(--gold-grad);color:#fff!important;font-weight:700;
+    padding:10px 22px;border-radius:999px;font-size:.92rem;
+    box-shadow:0 6px 18px rgba(168,127,29,.35), inset 0 1px 0 rgba(255,255,255,.5);
+  }
+  @media(max-width:720px){nav{margin:10px 10px 0}nav .links a:not(.cta){display:none}}
+
+  /* HERO */
+  header{padding:90px 0 70px}
+  .hero-tag{
+    display:inline-block;border:1px solid var(--gold-line);color:#9a7418;
+    background:rgba(255,255,255,.5);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    font-size:.8rem;font-weight:700;padding:6px 16px;border-radius:999px;letter-spacing:.4px;margin-bottom:22px;text-transform:uppercase;
+  }
+  h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;font-weight:800;margin-bottom:18px;color:var(--ink)}
+  h1 .grad{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:1.12rem;color:var(--mut);max-width:640px;margin-bottom:30px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{border-radius:16px;padding:14px 28px;font-weight:700;font-size:1rem;display:inline-block;transition:.2s}
+  .btn-main{background:var(--gold-grad);color:#fff!important;box-shadow:0 10px 26px rgba(168,127,29,.35), inset 0 1px 0 rgba(255,255,255,.55)}
+  .btn-ghost{
+    color:var(--ink)!important;
+    background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);
+    border:1px solid var(--glass-brd);box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .btn-ghost:hover{border-color:#d9b64a}
+  .hero-proof{margin-top:36px;color:var(--mut);font-size:.92rem;display:flex;gap:28px;flex-wrap:wrap}
+  .hero-proof b{color:#a87f1d}
+
+  /* SECCIONES */
+  section{padding:64px 0}
+  .k{text-align:center;text-transform:uppercase;letter-spacing:2px;color:#a87f1d;font-size:.8rem;font-weight:700;margin-bottom:8px}
+  h2{font-size:clamp(1.6rem,3.4vw,2.3rem);text-align:center;font-weight:800;margin-bottom:14px;color:var(--ink)}
+  .lead{text-align:center;color:var(--mut);max-width:640px;margin:0 auto 42px}
+
+  /* CARDS — vidrio */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+  .card{
+    background:var(--glass);
+    -webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid var(--glass-brd);border-radius:var(--r);
+    padding:28px;display:flex;flex-direction:column;transition:.25s;
+    box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .card:hover{transform:translateY(-4px);border-color:rgba(200,162,60,.55)}
+  .ic{font-size:1.9rem;margin-bottom:12px}
+  .card h3{font-size:1.2rem;margin-bottom:8px}
+  .card p{color:var(--mut);font-size:.95rem;flex:1}
+  .incl{margin:14px 0 0;list-style:none;font-size:.88rem}
+  .incl li{padding:4px 0 4px 26px;position:relative;color:var(--ink)}
+  .incl li::before{content:"✓";position:absolute;left:2px;color:#a87f1d;font-weight:800}
+  .price{margin-top:16px;padding-top:14px;border-top:1px dashed rgba(168,127,29,.35);font-size:.9rem;color:var(--mut)}
+  .price b{color:#a87f1d;font-size:1.05rem}
+  .price .dst{color:#8a6a15;font-weight:700}
+
+  /* PASOS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;counter-reset:s}
+  .step{
+    background:var(--glass);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid var(--glass-brd);border-radius:var(--r);padding:26px 24px 24px;position:relative;
+    box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:22px;
+    background:var(--gold-grad);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:.9rem;box-shadow:0 6px 14px rgba(168,127,29,.4), inset 0 1px 0 rgba(255,255,255,.5)}
+  .step h4{margin:10px 0 6px}
+  .step p{color:var(--mut);font-size:.92rem}
+
+  /* CASO */
+  .caso{
+    max-width:760px;margin:0 auto;border-radius:24px;padding:38px;
+    background:var(--glass);-webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
+    border:1px solid var(--gold-line);box-shadow:0 20px 50px rgba(160,130,50,.18), inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .caso h3{margin-bottom:10px}
+  .caso p{color:var(--mut)}
+  .caso .nums{display:flex;gap:36px;margin-top:22px;flex-wrap:wrap}
+  .caso .num b{display:block;font-size:1.7rem;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .caso .num span{color:var(--mut);font-size:.85rem}
+
+  /* PLANES */
+  .plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;align-items:stretch}
+  .plan{
+    background:var(--glass);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);
+    border:1px solid var(--glass-brd);border-radius:var(--r);padding:30px 28px;display:flex;flex-direction:column;position:relative;
+    box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .plan.pop{border-color:rgba(200,162,60,.65);box-shadow:0 22px 55px rgba(168,127,29,.25), inset 0 1px 0 rgba(255,255,255,.95)}
+  .plan .flag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold-grad);color:#fff;font-size:.72rem;font-weight:800;padding:5px 16px;border-radius:999px;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 6px 14px rgba(168,127,29,.4)}
+  .plan h3{font-size:1.05rem;margin-bottom:4px}
+  .plan .who{color:var(--mut);font-size:.85rem;margin-bottom:16px}
+  .plan .amt{font-size:2rem;font-weight:800;color:var(--ink)}
+  .plan .amt small{font-size:.95rem;color:var(--mut);font-weight:400}
+  .plan ul{list-style:none;margin:18px 0 22px;font-size:.9rem;flex:1}
+  .plan ul li{padding:5px 0 5px 24px;position:relative}
+  .plan ul li::before{content:"✓";position:absolute;left:0;color:#a87f1d;font-weight:800}
+  .plan .btn{text-align:center}
+
+  /* FAQ */
+  details{
+    background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);
+    border:1px solid var(--glass-brd);border-radius:16px;padding:18px 24px;margin-bottom:12px;
+    max-width:760px;margin-left:auto;margin-right:auto;box-shadow:0 8px 24px rgba(160,130,50,.10), inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  summary{font-weight:700;cursor:pointer}
+  details p{color:var(--mut);font-size:.93rem;margin-top:10px}
+
+  /* CONTACTO / FOOTER */
+  footer{border-top:1px solid rgba(200,162,60,.2);padding:34px 0;text-align:center;color:var(--mut);font-size:.88rem}
+  .whats{
+    display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1f9d55,#2fbf71);color:#fff!important;
+    font-weight:700;padding:16px 30px;border-radius:999px;font-size:1.05rem;
+    box-shadow:0 12px 30px rgba(31,157,85,.35), inset 0 1px 0 rgba(255,255,255,.4);
+  }
+  .whats:hover{filter:brightness(1.06)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Derito<span>Digital</span></div>
+    <div class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#como">Proceso</a>
+      <a href="#precios">Precios</a>
+      <a href="#faq">FAQ</a>
+      <a class="cta" href="#contacto">Empezar</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <span class="hero-tag">Webs + agentes de IA</span>
+    <h1>Tu negocio con un <span class="grad">agente que vende por vos</span>, 24/7</h1>
+    <p class="sub">Diseño tu página web y le agrego un asistente de IA que atiende clientes, actualiza el catálogo y toma pedidos por WhatsApp o Telegram. Sin empleados, sin horarios, sin perderse una venta.</p>
+    <div class="hero-actions">
+      <a class="btn btn-main" href="#contacto">Quiero mi agente →</a>
+      <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+    </div>
+    <div class="hero-proof">
+      <div><b>+5</b> servicios</div>
+      <div><b>100%</b> hecho a medida</div>
+      <div><b>24/7</b> tu agente nunca duerme</div>
+      <div><b>0</b> comisiones por venta</div>
+    </div>
+  </div>
+</header>
+
+<section id="servicios">
+  <div class="wrap">
+    <p class="k">Servicios</p>
+    <h2>¿Qué puedo hacer por tu negocio?</h2>
+    <p class="lead">Cuatro productos, un solo objetivo: que la tecnología te venda mientras vos hacés otra cosa.</p>
+    <div class="grid">
+
+      <div class="card">
+        <div class="ic">🛍️</div>
+        <h3>Web + Agente administrador</h3>
+        <p>Página profesional con catálogo, carrito y checkout por WhatsApp/transferencia. Incluye un agente de IA que edita productos, precios y textos cuando se lo pedís por chat.</p>
+        <ul class="incl">
+          <li>Diseño a medida + dominio + hosting</li>
+          <li>Catálogo y pedidos sin comisiones</li>
+          <li>Agente que actualiza todo por chat</li>
+          <li>Te enseño a usarlo en 15 minutos</li>
+        </ul>
+        <div class="price">Desde <b>USD 600</b> + <span class="dst">USD 50/mes</span> mantenimiento</div>
+      </div>
+
+      <div class="card">
+        <div class="ic">💬</div>
+        <h3>Bot vendedor por WhatsApp</h3>
+        <p>Tu WhatsApp contesta solo: precio, stock, horarios, y toma el pedido completo. Si no sabe algo, te lo pasa a vos. Ideal para locales, rotiserías y emprendimientos.</p>
+        <ul class="incl">
+          <li>Respuestas 24/7 en tu propio número</li>
+          <li>Carga de productos y precios simple</li>
+          <li>Deriva a humano cuando hace falta</li>
+          <li>Funciona en el celu que ya tenés</li>
+        </ul>
+        <div class="price">Desde <b>USD 300</b> + <span class="dst">USD 30/mes</span></div>
+      </div>
+
+      <div class="card">
+        <div class="ic">🤖</div>
+        <h3>Agente dedicado llave en mano</h3>
+        <p>Tu negocio con su propio bot en Telegram/WhatsApp que SOLO sabe de tu negocio. Gestiona consultas, pedidos, agenda y pendientes como un empleado digital con memoria.</p>
+        <ul class="incl">
+          <li>Bot propio con la identidad de tu marca</li>
+          <li>Memoria del negocio: clientes, precios, historial</li>
+          <li>Automatizaciones a medida</li>
+          <li>Entrenado con TU información</li>
+        </ul>
+        <div class="price">Desde <b>USD 500</b> + <span class="dst">USD 50/mes</span></div>
+      </div>
+
+      <div class="card">
+        <div class="ic">⚙️</div>
+        <h3>Automatización para profesionales</h3>
+        <p>Para contadores, abogados, coaches y estudios: clasifico tu inbox, respondo consultas frecuentes, armo recordatorios y resúmenes. Vos te dedicás a tu trabajo.</p>
+        <ul class="incl">
+          <li>Inbox ordenado y respondido</li>
+          <li>Recordatorios de vencimientos y turnos</li>
+          <li>Resúmenes de audios y documentos</li>
+          <li>Seguimiento de clientes</li>
+        </ul>
+        <div class="price">A consultar <b>por proyecto</b></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="como" style="background:linear-gradient(180deg,transparent,rgba(217,182,74,.06) 30%,rgba(217,182,74,.06) 70%,transparent)">
+  <div class="wrap">
+    <p class="k">Cómo trabajamos</p>
+    <h2>De cero a funcionando en días</h2>
+    <p class="lead">Sin vueltas ni tecnicismos: hablamos, te lo armo y te lo entrego andando.</p>
+    <div class="steps">
+      <div class="step"><h4>1. Charla inicial</h4><p>Me contás tu negocio por WhatsApp. Te digo qué te conviene y cuánto sale, sin cargo.</p></div>
+      <div class="step"><h4>2. Lo armo</h4><p>Diseño la web y/o configuro tu agente con los datos reales de tu negocio.</p></div>
+      <div class="step"><h4>3. Te lo enseño</h4><p>Te muestro cómo usarlo: cargar productos, responder clientes, pedir cambios.</p></div>
+      <div class="step"><h4>4. Seguimiento</h4><p>Queda andando solo. Cualquier cambio, me lo pedís por chat y lo hago.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="k">Caso real</p>
+    <h2>Ya funciona, no es teoría</h2>
+    <div class="caso">
+      <h3>🛒 Regalería online con agente administrador</h3>
+      <p>Una tienda de regalos personalizados opera hoy con web + agente: el dueño pide cambios de precios, productos y textos por chat, y el agente actualiza la página al toque. Los clientes piden por la web y pagan por transferencia, sin comisiones de marketplace.</p>
+      <div class="nums">
+        <div class="num"><b>24/7</b><span>tienda abierta</span></div>
+        <div class="num"><b>0%</b><span>comisiones por venta</span></div>
+        <div class="num"><b>1 min</b><span>para actualizar un precio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="precios" style="background:linear-gradient(180deg,transparent,rgba(217,182,74,.06) 30%,rgba(217,182,74,.06) 70%,transparent)">
+  <div class="wrap">
+    <p class="k">Inversión</p>
+    <h2>Precios simples, sin sorpresas</h2>
+    <p class="lead">Pago único por el armado + mensualidad chica por mantenimiento, dominio y soporte. Sin costos ocultos.</p>
+    <div class="plan-grid">
+      <div class="plan">
+        <h3>Bot WhatsApp</h3>
+        <div class="who">Para locales y emprendimientos</div>
+        <div class="amt">USD 300 <small>+ USD 30/mes</small></div>
+        <ul>
+          <li>Bot 24/7 en tu número</li>
+          <li>Productos, precios y horarios</li>
+          <li>Derivación a humano</li>
+          <li>Soporte incluido</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto">Elegir plan</a>
+      </div>
+      <div class="plan pop">
+        <div class="flag">Más elegido</div>
+        <h3>Web + Agente</h3>
+        <div class="who">Para marcas que quieren vender online</div>
+        <div class="amt">USD 600 <small>+ USD 50/mes</small></div>
+        <ul>
+          <li>Web profesional a medida</li>
+          <li>Catálogo + carrito + pedidos</li>
+          <li>Agente administrador por chat</li>
+          <li>Dominio y hosting incluidos</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <a class="btn btn-main" href="#contacto">Elegir plan</a>
+      </div>
+      <div class="plan">
+        <h3>A medida</h3>
+        <div class="who">Agentes y automatizaciones custom</div>
+        <div class="amt">A consultar</div>
+        <ul>
+          <li>Agente dedicado de marca</li>
+          <li>Automatización de procesos</li>
+          <li>Integraciones especiales</li>
+          <li>Presupuesto cerrado antes de arrancar</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto">Pedir presupuesto</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <p class="k">Dudas frecuentes</p>
+    <h2>Lo que todos preguntan</h2>
+    <p class="lead"></p>
+    <details open>
+      <summary>¿Necesito saber de tecnología?</summary>
+      <p>No. Todo se maneja por chat: vos pedís y el agente hace. Si sabés mandar un WhatsApp, sabés usarlo.</p>
+    </details>
+    <details>
+      <summary>¿El agente me reemplaza?</summary>
+      <p>No: te descarga. Atiende lo repetitivo (precios, stock, horarios, pedidos) y te pasa lo que necesita criterio humano. Vos seguís decidiendo todo.</p>
+    </details>
+    <details>
+      <summary>¿Cómo cobro las ventas?</summary>
+      <p>Como quieras: transferencia, alias o Mercado Pago. No uso pasarelas que te cobren comisión por venta si no las necesitás.</p>
+    </details>
+    <details>
+      <summary>¿Y si quiero cambios después?</summary>
+      <p>La mensualidad incluye mantenimiento: me pedís el cambio por chat y lo hago. Sin pagar de nuevo el armado.</p>
+    </details>
+    <details>
+      <summary>¿En cuánto tiempo lo tengo?</summary>
+      <p>Un bot puede estar andando en 2-3 días. Una web completa, en 1-2 semanas según el proyecto.</p>
+    </details>
+  </div>
+</section>
+
+<section id="contacto" style="padding-bottom:90px">
+  <div class="wrap" style="text-align:center">
+    <h2>¿Hablamos de tu proyecto?</h2>
+    <p class="lead" style="margin-bottom:26px">Mandame un WhatsApp y en la misma charla te digo qué te conviene y cuánto sale. Sin compromiso.</p>
+    <a class="whats" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank">
+      💬 Escribime por WhatsApp
+    </a>
+    <p style="margin-top:18px;color:var(--mut);font-size:.95rem">WhatsApp: <b style="color:var(--ink)">+54 9 11 3802-6712</b> · Respuesta en el día · <a href="#faq">Preguntas frecuentes</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Derito Digital — Webs y agentes de IA que venden por vos.</p>
+  </div>
+</footer>
+
+</body>
+</html>
