@@ -4,13 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Derito Digital — Webs y agentes de IA que venden por vos</title>
+<meta name="description" content="Webs + agentes de IA que atienden clientes, actualizan catálogo y toman pedidos por WhatsApp o Telegram. Tu empleado digital 24/7, sin comisiones por venta.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Derito Digital">
+<meta property="og:title" content="Derito Digital — Webs y agentes de IA que venden por vos">
+<meta property="og:description" content="Tu negocio con un agente que vende por vos, 24/7. Atiende clientes, actualiza catálogo y toma pedidos por WhatsApp o Telegram.">
+<meta property="og:locale" content="es_AR">
+<meta name="theme-color" content="#fdfbf5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BC%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --gold1:#a87f1d; --gold2:#d9b64a; --gold3:#f2e2ae;
     --gold-grad:linear-gradient(135deg,#a87f1d,#d9b64a 55%,#b58a24);
     --ink:#211d12; --mut:#6f6752;
-    --glass:rgba(255,255,255,.58);
-    --glass-brd:rgba(255,255,255,.85);
+    --glass:rgba(255,255,255,.40);
+    --glass-brd:rgba(255,255,255,.55);
     --gold-line:rgba(200,162,60,.28);
     --r:22px;
     --shadow:0 12px 40px rgba(160,130,50,.14);
@@ -26,6 +34,15 @@
       radial-gradient(800px 600px at 50% 110%, rgba(200,162,60,.12), transparent 60%),
       linear-gradient(180deg,#ffffff,#fdfbf5 45%,#faf6ea);
     background-attachment:fixed;
+  }
+  body::before{ /* orbes de color: dan material para que el glass se note */
+    content:"";position:fixed;inset:-18%;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(46% 36% at 84% 4%, rgba(217,182,74,.50), transparent 68%),
+      radial-gradient(36% 32% at 2% 28%, rgba(246,232,190,.95), transparent 66%),
+      radial-gradient(42% 36% at 94% 60%, rgba(212,170,70,.38), transparent 68%),
+      radial-gradient(34% 32% at 6% 86%, rgba(246,232,190,.90), transparent 66%),
+      radial-gradient(60% 50% at 50% 50%, rgba(255,255,255,0), transparent 55%);
   }
   .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
   a{color:#9a7418;text-decoration:none}
@@ -54,6 +71,32 @@
 
   /* HERO */
   header{padding:90px 0 70px}
+
+  /* HERO — copy + chat en vivo */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+  .hero-visual{position:relative;display:flex;flex-direction:column;align-items:center}
+  .chat-card{
+    width:100%;max-width:352px;
+    background:linear-gradient(165deg,rgba(255,255,255,.78),rgba(255,255,255,.42));
+    -webkit-backdrop-filter:blur(30px) saturate(200%);backdrop-filter:blur(30px) saturate(200%);
+    border:1px solid rgba(255,255,255,.75);border-radius:34px;
+    padding:16px;box-shadow:0 34px 80px rgba(150,118,40,.26), inset 0 1px 0 rgba(255,255,255,.95);
+    transform:rotate(1.2deg);
+  }
+  .chat-head{display:flex;align-items:center;gap:11px;padding:8px 10px 14px;border-bottom:1px solid rgba(200,162,60,.22);margin-bottom:14px}
+  .chat-head .ava{width:38px;height:38px;border-radius:50%;background:var(--gold-grad);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.05rem;box-shadow:0 4px 10px rgba(168,127,29,.35);flex-shrink:0}
+  .chat-head b{font-size:.95rem;display:block;line-height:1.25}
+  .chat-head small{color:var(--mut);font-size:.72rem}
+  .chat-head .tick{margin-left:auto;color:#1f9d55;font-weight:800;font-size:.85rem}
+  .chat-body{display:flex;flex-direction:column;gap:9px}
+  .bub{max-width:84%;padding:9px 13px;border-radius:17px;font-size:.87rem;line-height:1.42;box-shadow:inset 0 1px 0 rgba(255,255,255,.55)}
+  .bub.in{align-self:flex-start;background:#fff;border:1px solid rgba(255,255,255,.9);border-bottom-left-radius:5px;color:var(--ink)}
+  .bub.out{align-self:flex-end;background:linear-gradient(135deg,#1f9d55,#2fbf71);color:#fff;border-bottom-right-radius:5px;box-shadow:0 6px 14px rgba(31,157,85,.25)}
+  .ia-note{margin-top:18px;font-size:.82rem;color:#8a6a15;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);padding:7px 14px;border-radius:999px;font-weight:600}
+  @media(max-width:920px){
+    .hero{grid-template-columns:1fr;gap:46px}
+    .chat-card{max-width:320px;transform:none}
+  }
   .hero-tag{
     display:inline-block;border:1px solid var(--gold-line);color:#9a7418;
     background:rgba(255,255,255,.5);
@@ -161,6 +204,57 @@
     box-shadow:0 12px 30px rgba(31,157,85,.35), inset 0 1px 0 rgba(255,255,255,.4);
   }
   .whats:hover{filter:brightness(1.06)}
+
+  /* BOTÓN WHATSAPP FLOTANTE */
+  .wa-fab{
+    position:fixed;right:18px;bottom:18px;z-index:120;
+    width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(135deg,#1f9d55,#2fbf71);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 34px rgba(31,157,85,.45), inset 0 1px 0 rgba(255,255,255,.4);
+    transition:.2s;
+  }
+  .wa-fab:hover{transform:translateY(-3px) scale(1.04);filter:brightness(1.06)}
+  .wa-fab svg{width:32px;height:32px;fill:#fff}
+
+  /* WIDGET CHAT DEMO */
+  .chat-fab{
+    position:fixed;right:18px;bottom:92px;z-index:120;
+    width:60px;height:60px;border-radius:50%;
+    background:var(--gold-grad);
+    display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+    box-shadow:0 14px 34px rgba(168,127,29,.4), inset 0 1px 0 rgba(255,255,255,.5);
+    cursor:pointer;transition:.2s;border:none;color:#fff;
+  }
+  .chat-fab:hover{transform:translateY(-3px) scale(1.04);filter:brightness(1.05)}
+  .chat-box{
+    position:fixed;right:18px;bottom:164px;z-index:130;width:min(360px,calc(100vw - 36px));
+    background:linear-gradient(165deg,rgba(255,255,255,.92),rgba(255,255,255,.82));
+    -webkit-backdrop-filter:blur(30px) saturate(200%);backdrop-filter:blur(30px) saturate(200%);
+    border:1px solid rgba(255,255,255,.8);border-radius:24px;
+    box-shadow:0 24px 60px rgba(150,118,40,.28), inset 0 1px 0 rgba(255,255,255,.95);
+    display:none;flex-direction:column;overflow:hidden;
+  }
+  .chat-box.open{display:flex}
+  .chat-box .cb-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--gold-grad);color:#fff}
+  .chat-box .cb-head b{font-size:.95rem}
+  .chat-box .cb-head small{opacity:.85;font-size:.72rem;display:block}
+  .chat-box .cb-close{margin-left:auto;background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer}
+  .chat-msgs{height:300px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:rgba(250,246,234,.5)}
+  .cmsg{max-width:85%;padding:8px 12px;border-radius:15px;font-size:.88rem;line-height:1.45;white-space:pre-wrap}
+  .cmsg.user{align-self:flex-end;background:var(--gold-grad);color:#fff;border-bottom-right-radius:4px}
+  .cmsg.bot{align-self:flex-start;background:#fff;border:1px solid rgba(255,255,255,.9);border-bottom-left-radius:4px;color:var(--ink)}
+  .cmsg.typing{align-self:flex-start;color:var(--mut);font-size:.85rem;font-style:italic}
+  .chat-input{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(200,162,60,.25)}
+  .chat-input input{flex:1;border:1px solid rgba(200,162,60,.35);border-radius:999px;padding:9px 14px;font-size:.9rem;outline:none;background:#fff}
+  .chat-input button{border:none;background:var(--gold-grad);color:#fff;border-radius:999px;padding:0 18px;font-weight:700;cursor:pointer}
+
+  /* ===== GLASS PROTAGONISTA (v3) ===== */
+  nav,.card,.step,.caso,.plan,.btn-ghost,details,.hero-tag{
+    background:linear-gradient(165deg,rgba(255,255,255,.70),rgba(255,255,255,.32));
+    -webkit-backdrop-filter:blur(30px) saturate(200%);
+    backdrop-filter:blur(30px) saturate(200%);
+  }
 </style>
 </head>
 <body>
@@ -173,25 +267,46 @@
       <a href="#como">Proceso</a>
       <a href="#precios">Precios</a>
       <a href="#faq">FAQ</a>
-      <a class="cta" href="#contacto">Empezar</a>
+      <a class="cta" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20un%20agente%20que%20venda%20por%20m%C3%AD" target="_blank">Empezar</a>
     </div>
   </div>
 </nav>
 
 <header>
-  <div class="wrap">
-    <span class="hero-tag">Webs + agentes de IA</span>
-    <h1>Tu negocio con un <span class="grad">agente que vende por vos</span>, 24/7</h1>
-    <p class="sub">Diseño tu página web y le agrego un asistente de IA que atiende clientes, actualiza el catálogo y toma pedidos por WhatsApp o Telegram. Sin empleados, sin horarios, sin perderse una venta.</p>
-    <div class="hero-actions">
-      <a class="btn btn-main" href="#contacto">Quiero mi agente →</a>
-      <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <span class="hero-tag">Webs + agentes de IA</span>
+      <h1>Tu negocio con un <span class="grad">agente que vende por vos</span>, 24/7</h1>
+      <p class="sub">Diseño tu página web y le agrego un asistente de IA que atiende clientes, actualiza el catálogo y toma pedidos por WhatsApp o Telegram. Sin empleados, sin horarios, sin perderse una venta.</p>
+      <div class="hero-actions">
+        <a class="btn btn-main" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20un%20agente%20que%20venda%20por%20m%C3%AD" target="_blank">Quiero mi agente →</a>
+        <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+      </div>
+      <div class="hero-proof">
+        <div><b>+5</b> servicios</div>
+        <div><b>100%</b> hecho a medida</div>
+        <div><b>24/7</b> tu agente nunca duerme</div>
+        <div><b>0</b> comisiones por venta</div>
+      </div>
     </div>
-    <div class="hero-proof">
-      <div><b>+5</b> servicios</div>
-      <div><b>100%</b> hecho a medida</div>
-      <div><b>24/7</b> tu agente nunca duerme</div>
-      <div><b>0</b> comisiones por venta</div>
+    <div class="hero-visual">
+      <div class="chat-card">
+        <div class="chat-head">
+          <div class="ava">🛍️</div>
+          <div>
+            <b>Regalería San Telmo</b>
+            <small>en línea · responde al toque</small>
+          </div>
+          <span class="tick">✔✔</span>
+        </div>
+        <div class="chat-body">
+          <div class="bub in">Hola, ¿tenés el porta-mate grabado?</div>
+          <div class="bub out">¡Hola! 😊 Sí, hoy hay 4 diseños. El clásico $12.500. ¿Te lo reservo?</div>
+          <div class="bub in">Dale, reservámelo 🙌</div>
+          <div class="bub out">✅ Listo, te queda separado hasta mañana. ¿Te paso el alias para pagar?</div>
+        </div>
+      </div>
+      <div class="ia-note">⚡ Atendido por IA · responde en segundos</div>
     </div>
   </div>
 </header>
@@ -305,7 +420,7 @@
           <li>Derivación a humano</li>
           <li>Soporte incluido</li>
         </ul>
-        <a class="btn btn-ghost" href="#contacto">Elegir plan</a>
+        <a class="btn btn-ghost" href="https://wa.me/5491138026712?text=Hola!%20Me%20interesa%20el%20plan%20Bot%20de%20WhatsApp" target="_blank">Elegir plan</a>
       </div>
       <div class="plan pop">
         <div class="flag">Más elegido</div>
@@ -319,7 +434,7 @@
           <li>Dominio y hosting incluidos</li>
           <li>Soporte prioritario</li>
         </ul>
-        <a class="btn btn-main" href="#contacto">Elegir plan</a>
+        <a class="btn btn-main" href="https://wa.me/5491138026712?text=Hola!%20Me%20interesa%20el%20plan%20Web%20%2B%20Agente" target="_blank">Elegir plan</a>
       </div>
       <div class="plan">
         <h3>A medida</h3>
@@ -331,7 +446,7 @@
           <li>Integraciones especiales</li>
           <li>Presupuesto cerrado antes de arrancar</li>
         </ul>
-        <a class="btn btn-ghost" href="#contacto">Pedir presupuesto</a>
+        <a class="btn btn-ghost" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20un%20presupuesto%20a%20medida" target="_blank">Pedir presupuesto</a>
       </div>
     </div>
   </div>
@@ -382,5 +497,56 @@
   </div>
 </footer>
 
+<a class="wa-fab" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank" aria-label="Escribime por WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<button class="chat-fab" id="chatFab" aria-label="Probar el agente demo">🤖</button>
+<div class="chat-box" id="chatBox">
+  <div class="cb-head">
+    <div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:1.1rem">💼</div>
+    <div>
+      <b>Derito Digital</b>
+      <small>Te asesoro sin cargo · responde al toque</small>
+    </div>
+    <button class="cb-close" id="chatClose">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-input">
+    <input id="chatText" type="text" placeholder="Ej: ¿cuánto cuesta una web con agente?" autocomplete="off">
+    <button id="chatSend">➤</button>
+  </div>
+</div>
+<script>
+(function(){
+  var fab=document.getElementById('chatFab'),box=document.getElementById('chatBox'),msgs=document.getElementById('chatMsgs'),
+      inp=document.getElementById('chatText'),send=document.getElementById('chatSend'),close=document.getElementById('chatClose');
+  var sid=localStorage.getItem('derito_sid')||('v'+Math.random().toString(36).slice(2,10));
+  localStorage.setItem('derito_sid',sid);
+  function add(txt,who){
+    var d=document.createElement('div');d.className='cmsg '+who;d.textContent=txt;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+  }
+  function openBox(){box.classList.add('open');fab.style.display='none';if(!msgs.children.length){add('¡Hola! 👋 Soy el asistente de Derito Digital. Hacemos webs + agentes de IA que atienden y venden por vos, 24/7. ¿De qué rubro es tu negocio? Te digo qué te conviene y cuánto sale.','bot')}inp.focus()}
+  function sendMsg(){
+    var t=inp.value.trim();if(!t)return;inp.value='';
+    add(t,'user');add('Escribiendo…','typing');
+    var eps=['/api/chat','https://feb-advertiser-together-immune.trycloudflare.com/api/chat'];
+    function tryEp(i){
+      if(i>=eps.length)return Promise.reject(new Error('sin backend'));
+      return fetch(eps[i],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session:sid,message:t})})
+        .then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json()})
+        .catch(function(){return tryEp(i+1)});
+    }
+    tryEp(0)
+      .then(function(j){var ty=msgs.querySelector('.typing');if(ty)ty.remove();add(j.reply||'(sin respuesta)','bot')})
+      .catch(function(){var ty=msgs.querySelector('.typing');if(ty)ty.remove();add('Ups, no pude conectar con el agente ahora. Si querés, escribinos por WhatsApp 👇','bot');
+        var a=document.createElement('a');a.className='cmsg bot';a.href='https://wa.me/5491138026712?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios';a.target='_blank';a.textContent='💬 Ir a WhatsApp';msgs.appendChild(a);});
+  }
+  fab.addEventListener('click',openBox);
+  close.addEventListener('click',function(){box.classList.remove('open');fab.style.display='flex'});
+  send.addEventListener('click',sendMsg);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg()});
+})();
+</script>
 </body>
 </html>
