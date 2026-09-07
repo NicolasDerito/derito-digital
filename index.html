@@ -228,7 +228,8 @@
   }
   .chat-fab:hover{transform:translateY(-3px) scale(1.04);filter:brightness(1.05)}
   .chat-box{
-    position:fixed;right:18px;bottom:164px;z-index:130;width:min(360px,calc(100vw - 36px));
+    position:fixed;right:18px;bottom:18px;z-index:130;width:min(370px,calc(100vw - 36px));
+    height:min(520px,calc(100vh - 36px));
     background:linear-gradient(165deg,rgba(255,255,255,.92),rgba(255,255,255,.82));
     -webkit-backdrop-filter:blur(30px) saturate(200%);backdrop-filter:blur(30px) saturate(200%);
     border:1px solid rgba(255,255,255,.8);border-radius:24px;
@@ -236,18 +237,22 @@
     display:none;flex-direction:column;overflow:hidden;
   }
   .chat-box.open{display:flex}
-  .chat-box .cb-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--gold-grad);color:#fff}
+  .chat-box.open ~ .wa-fab,.chat-box.open ~ .chat-fab{opacity:0;pointer-events:none}
+  .chat-box .cb-head{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--gold-grad);color:#fff;flex-shrink:0}
   .chat-box .cb-head b{font-size:.95rem}
   .chat-box .cb-head small{opacity:.85;font-size:.72rem;display:block}
   .chat-box .cb-close{margin-left:auto;background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer}
-  .chat-msgs{height:300px;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:rgba(250,246,234,.5)}
+  .chat-msgs{flex:1;min-height:0;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;background:rgba(250,246,234,.5)}
   .cmsg{max-width:85%;padding:8px 12px;border-radius:15px;font-size:.88rem;line-height:1.45;white-space:pre-wrap}
   .cmsg.user{align-self:flex-end;background:var(--gold-grad);color:#fff;border-bottom-right-radius:4px}
   .cmsg.bot{align-self:flex-start;background:#fff;border:1px solid rgba(255,255,255,.9);border-bottom-left-radius:4px;color:var(--ink)}
   .cmsg.typing{align-self:flex-start;color:var(--mut);font-size:.85rem;font-style:italic}
-  .chat-input{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(200,162,60,.25)}
-  .chat-input input{flex:1;border:1px solid rgba(200,162,60,.35);border-radius:999px;padding:9px 14px;font-size:.9rem;outline:none;background:#fff}
+  .chat-input{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(200,162,60,.25);flex-shrink:0}
+  .chat-input input{flex:1;min-width:0;border:1px solid rgba(200,162,60,.35);border-radius:999px;padding:9px 14px;font-size:.9rem;outline:none;background:#fff}
   .chat-input button{border:none;background:var(--gold-grad);color:#fff;border-radius:999px;padding:0 18px;font-weight:700;cursor:pointer}
+  @media(max-width:480px){
+    .chat-box{right:10px;bottom:10px;width:calc(100vw - 20px);height:calc(100vh - 20px);border-radius:20px}
+  }
 
   /* ===== GLASS PROTAGONISTA (v3) ===== */
   nav,.card,.step,.caso,.plan,.btn-ghost,details,.hero-tag{
@@ -520,13 +525,13 @@
 <script>
 (function(){
   var fab=document.getElementById('chatFab'),box=document.getElementById('chatBox'),msgs=document.getElementById('chatMsgs'),
-      inp=document.getElementById('chatText'),send=document.getElementById('chatSend'),close=document.getElementById('chatClose');
+      inp=document.getElementById('chatText'),send=document.getElementById('chatSend'),close=document.getElementById('chatClose'),wafab=document.querySelector('.wa-fab');
   var sid=localStorage.getItem('derito_sid')||('v'+Math.random().toString(36).slice(2,10));
   localStorage.setItem('derito_sid',sid);
   function add(txt,who){
     var d=document.createElement('div');d.className='cmsg '+who;d.textContent=txt;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
   }
-  function openBox(){box.classList.add('open');fab.style.display='none';if(!msgs.children.length){add('¡Hola! 👋 Soy el asistente de Derito Digital. Hacemos webs + agentes de IA que atienden y venden por vos, 24/7. ¿De qué rubro es tu negocio? Te digo qué te conviene y cuánto sale.','bot')}inp.focus()}
+  function openBox(){box.classList.add('open');fab.style.display='none';if(wafab)wafab.style.display='none';if(!msgs.children.length){add('¡Hola! 👋 Soy el asistente de Derito Digital. Hacemos webs + agentes de IA que atienden y venden por vos, 24/7. ¿De qué rubro es tu negocio? Te digo qué te conviene y cuánto sale.','bot')}inp.focus()}
   function sendMsg(){
     var t=inp.value.trim();if(!t)return;inp.value='';
     add(t,'user');add('Escribiendo…','typing');
@@ -543,7 +548,7 @@
         var a=document.createElement('a');a.className='cmsg bot';a.href='https://wa.me/5491138026712?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios';a.target='_blank';a.textContent='💬 Ir a WhatsApp';msgs.appendChild(a);});
   }
   fab.addEventListener('click',openBox);
-  close.addEventListener('click',function(){box.classList.remove('open');fab.style.display='flex'});
+  close.addEventListener('click',function(){box.classList.remove('open');fab.style.display='flex';if(wafab)wafab.style.display='flex'});
   send.addEventListener('click',sendMsg);
   inp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg()});
 })();
