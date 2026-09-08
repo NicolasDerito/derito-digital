@@ -79,3 +79,49 @@ Objetivo: que la landing ande en un `.com.ar` propio (hoy vive en https://nicola
 - ⚠️ No commitear el CNAME hasta que el dominio esté registrado y el DNS apunte: si no, la URL actual de GitHub Pages puede dejar de responder.
 - **Verificación**: abrir https://deritodigital.com.ar y confirmar que carga igual que la landing.
 - Plan B (post-lanzamiento): con dominio propio se puede crear mail con marca (deritodigital@deritodigital.com.ar) si se quiere dejar el gmail.
+
+## 10. Guion de WhatsApp — para Nicolás (cerrar la conversación)
+
+Reglas de oro:
+- Responder en <1 h siempre (la velocidad vende sola).
+- Primero diagnóstico, después precio. Nunca tirar número sin entender el caso.
+- Cada mensaje termina con una pregunta o con un paso concreto (la charla nunca muere).
+- Nunca bajar la mensualidad: si negocian, se cede en el armado o se suma algo, jamás en el recurrente.
+- Después de pedir la seña: silencio. El primero que habla pierde.
+
+1) PRIMER MENSAJE (lead nuevo — respondés vos, en persona):
+"Hola [nombre]! 👋 Gracias por escribir. Contame: ¿qué vende tu negocio y qué es lo que más te molesta hoy — atender consultas todo el día, no tener presencia online, perder pedidos? Con eso te digo en 5 minutos qué te conviene y cuánto sale. Sin compromiso."
+
+2) DIAGNÓSTICO (10 min — preguntas guía, sin hablar de precio):
+- ¿Qué vendés y a quién? (rubro, producto estrella)
+- ¿Cómo te llegan los clientes hoy? (WhatsApp / IG / local / boca en boca)
+- ¿Qué consultas se repiten todo el día? (precio, stock, horarios, turnos)
+- Si no contestás en el momento, ¿se te van? 
+- ¿Atendés vos? ¿Cuántas horas por día te come el teléfono?
+- ¿Qué es lo que más plata te hace perder hoy?
+Objetivo: dolor real + urgencia + tamaño. Sin dolor no hay venta.
+
+3) PROPUESTA (mismo día, por escrito):
+"Con lo que me contaste, lo que te conviene es [producto]. Te lo armo así: [2-3 beneficios concretos DE SU caso]. El armado es USD X — con el 20% de lanzamiento queda en USD Y hasta el 30/09 — y la mensualidad es USD Z/mes, que cubre mantenimiento, hosting y cambios por chat: no pagás de nuevo por cada modificación. Lo tenés andando en [2-3 días / 1-2 semanas]. La seña es 50% y recién se paga cuando aprobás el diseño funcionando."
+
+4) OBJECIONES (respuestas listas):
+- "Es caro" → "Comparalo con lo que perdés hoy: cada consulta que no contestás en el momento es una venta que se va a la competencia. Sale menos que medio día de un empleado y atiende 24/7, sin aguinaldo ni franco."
+- "Lo pienso" → "Pensalo con el número en la mano, que la charla no te costó nada. El 20% de lanzamiento corre hasta el 30/09 y tomo solo 3 armados por mes: cuando se llenan, cierro la lista. ¿Qué duda puntual tenés? Te la respondo y decidís tranquilo."
+- "No sé de tecnología" → "No hace falta: todo se maneja por chat. Si sabés mandar un WhatsApp, sabés usarlo. Te lo enseño en 15 minutos."
+- "Ya tengo página / alguien que me hace eso" → "Entonces ya sabés lo que cuesta mantenerla al día. La diferencia: esto no es una página, es un empleado digital que atiende, actualiza el catálogo y toma pedidos solo. ¿Esa página te responde a las 2 de la mañana?"
+- "¿Y si no funciona?" → "Por eso la seña es cuando lo ves andando, no antes. Y la mensualidad incluye ajustes: si algo no te sirve, se cambia."
+
+5) CIERRE:
+- Directo: "Dale, para arrancar necesito [dato concreto del negocio]. Te mando la propuesta formal y el alias para la seña del 50%."
+- Alternativo (si duda entre 2): "¿Arrancamos con el bot de WhatsApp, que es lo más rápido, o preferís ir por la web completa?"
+- Pediste la seña → silencio.
+
+6) MENSUALIDAD (ingreso recurrente, el negocio real):
+- Facturar el día 1 de cada mes. 48 h antes, recordatorio amable: "¡Buenas [nombre]! Te recuerdo la mensualidad de [mes] (USD Z). Cualquier cambio que necesites, pedímelo por acá y lo hago."
+- Al cobrar cada mes, preguntar: "¿Viste algo que quieras ajustar? ¿Cómo viene el mes?" → oportunidades de upgrade.
+
+7) SEGUIMIENTO de los que no cerraron (Predictable Revenue a mano):
+- Día 3: "¿Pudiste pensar lo de [producto]? Si querés, te muestro cómo quedaría con tu catálogo real."
+- Día 10: mandar algo de valor (caso, mejora) sin pedir nada.
+- Día 30: "Este mes tengo 1 cupo libre para armado. Si querés arrancar, avisame antes de que se llene."
+- Nunca spam: cada toque suma valor o hace una pregunta puntual.
