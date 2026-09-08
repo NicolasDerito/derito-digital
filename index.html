@@ -305,6 +305,21 @@
     body::before,h1 .grad{animation:none!important}
     .rv{opacity:1!important;transform:none!important}
   }
+  /* ===== FUTURISMO ALTO (v6) ===== */
+  body::after{ /* grid tecnológico sutil sobre el fondo */
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:linear-gradient(rgba(168,127,29,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(168,127,29,.07) 1px,transparent 1px);
+    background-size:44px 44px;
+    -webkit-mask-image:radial-gradient(ellipse at 50% 30%,rgba(0,0,0,.9),transparent 75%);
+    mask-image:radial-gradient(ellipse at 50% 30%,rgba(0,0,0,.9),transparent 75%);
+  }
+  #fx-canvas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5}
+  h1 .grad{animation:shine 5s linear infinite}
+  .hero-tag{border-color:rgba(217,182,74,.55);box-shadow:0 0 18px rgba(217,182,74,.25), inset 0 0 12px rgba(255,255,255,.5)}
+  .btn-main{animation:glowPulse 3s ease-in-out infinite}
+  @keyframes glowPulse{0%,100%{box-shadow:0 10px 26px rgba(168,127,29,.35),0 0 0 rgba(217,182,74,0), inset 0 1px 0 rgba(255,255,255,.55)}50%{box-shadow:0 10px 30px rgba(168,127,29,.45),0 0 24px rgba(217,182,74,.35), inset 0 1px 0 rgba(255,255,255,.55)}}
+  .card:hover,.plan:hover,.step:hover,.caso:hover,.gar:hover{box-shadow:0 0 0 1px rgba(217,182,74,.45),0 0 30px rgba(217,182,74,.18),0 18px 44px rgba(150,118,40,.18)}
+  @media(prefers-reduced-motion:reduce){#fx-canvas{display:none}body::after{display:none}.btn-main{animation:none}}
 </style>
 </head>
 <body>
@@ -699,6 +714,38 @@
   } else {
     nums.forEach(runCount);
   }
+})();
+</script>
+<script>
+(function(){
+  /* partículas conectadas estilo red futurista (dorado sutil) */
+  var cv=document.createElement('canvas');cv.id='fx-canvas';
+  document.body.appendChild(cv);
+  var ctx=cv.getContext('2d'),W,H,parts=[],running=true;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;
+    var n=Math.min(W,H)<600?22:45;parts=[];
+    for(var i=0;i<n;i++)parts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.6});
+  }
+  function frame(){
+    if(!running)return;
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i];p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(168,127,29,.55)';ctx.fill();
+      for(var j=i+1;j<parts.length;j++){
+        var q=parts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;
+        if(d<16900){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(217,182,74,'+(0.16*(1-d/16900)).toFixed(3)+')';ctx.lineWidth=1;ctx.stroke();}
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  if(!reduce){
+    size();window.addEventListener('resize',size);
+    document.addEventListener('visibilitychange',function(){running=!document.hidden;if(running)requestAnimationFrame(frame)});
+    requestAnimationFrame(frame);
+  } else { cv.style.display='none'; }
 })();
 </script>
 </body>
