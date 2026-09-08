@@ -198,6 +198,8 @@
   .plan h3{font-size:1.05rem;margin-bottom:4px}
   .plan .who{color:var(--mut);font-size:.85rem;margin-bottom:16px}
   .plan .amt{font-size:2rem;font-weight:800;color:var(--ink)}
+  .plan .amt s{font-size:1.35rem;font-weight:600;color:var(--mut);text-decoration:line-through;margin-right:8px;vertical-align:middle}
+  .plan .amt .now{vertical-align:middle}
   .plan .amt small{font-size:.95rem;color:var(--mut);font-weight:400}
   .plan ul{list-style:none;margin:18px 0 22px;font-size:.9rem;flex:1}
   .plan ul li{padding:5px 0 5px 24px;position:relative}
@@ -617,7 +619,7 @@
       <div class="plan">
         <h3>Bot WhatsApp</h3>
         <div class="who">Para locales y emprendimientos</div>
-        <div class="amt">USD 300 <small>+ USD 30/mes</small></div>
+        <div class="amt" data-orig="USD 300 <small>+ USD 30/mes</small>"><s>USD 300</s> <b class="now">USD 240</b> <small>+ USD 30/mes</small></div>
         <span class="promo-tag">🎉 20% OFF en el armado · hasta el 30/09</span>
         <ul>
           <li>Bot 24/7 en tu número</li>
@@ -631,7 +633,7 @@
         <div class="flag">Más elegido</div>
         <h3>Web + Agente</h3>
         <div class="who">Para marcas que quieren vender online</div>
-        <div class="amt">USD 600 <small>+ USD 50/mes</small></div>
+        <div class="amt" data-orig="USD 600 <small>+ USD 50/mes</small>"><s>USD 600</s> <b class="now">USD 480</b> <small>+ USD 50/mes</small></div>
         <span class="promo-tag">🎉 20% OFF en el armado · hasta el 30/09</span>
         <ul>
           <li>Web profesional a medida</li>
@@ -878,6 +880,8 @@
     if(d<0){
       if(bar)bar.remove();
       [].forEach.call(document.querySelectorAll('.promo-tag,.cupos-note'),function(n){n.remove()});
+      /* vuelve el precio original sin descuento */
+      [].forEach.call(document.querySelectorAll('.amt[data-orig]'),function(a){a.innerHTML=a.getAttribute('data-orig');a.removeAttribute('data-orig')});
     } else {
       el.textContent = d===0 ? '¡hoy es el último día!' : 'hasta el 30/09 · quedan '+d+' días';
     }
