@@ -65,3 +65,17 @@ Semana 3-4:
 - No prometer cosas que el agente no hace (ser honesto con los límites).
 - No laburar gratis por un caso "para portfolio" si ya tenés 2 casos reales.
 - No depender de un solo canal: WhatsApp + IG + boca a boca siempre activos.
+
+## 9. Dominio .com.ar — checklist para el 2026-09-08
+
+Objetivo: que la landing ande en un `.com.ar` propio (hoy vive en https://nicolasderito.github.io/derito-digital/). El mail a usar para todo: nicolasderito666@gmail.com.
+
+- **Dominio**: `deritodigital.com.ar` estaba DISPONIBLE al 2026-09-07 (verificado en whois.nic.ar; también `derito-digital.com.ar` disponible).
+- **Registro**: los `.com.ar` se registran en NIC Argentina a través de un agente de registro habilitado (ej. Dondominio y similares). Requiere CUIT/CUIL del titular. Registrar a nombre de Nicolás con el mail de arriba.
+- **DNS hacia GitHub Pages** (el hosting no cambia, no hay que migrar nada):
+  - Apex `deritodigital.com.ar` → 4 registros A: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
+  - (alternativa con www: CNAME `www` → `nicolasderito.github.io`)
+- **En el repo derito-digital** (lo hace el agente, no el usuario): GitHub → Settings → Pages → Custom domain `deritodigital.com.ar` + Enforce HTTPS. O agregar archivo `CNAME` en la raíz del repo con `deritodigital.com.ar`.
+- ⚠️ No commitear el CNAME hasta que el dominio esté registrado y el DNS apunte: si no, la URL actual de GitHub Pages puede dejar de responder.
+- **Verificación**: abrir https://deritodigital.com.ar y confirmar que carga igual que la landing.
+- Plan B (post-lanzamiento): con dominio propio se puede crear mail con marca (deritodigital@deritodigital.com.ar) si se quiere dejar el gmail.
