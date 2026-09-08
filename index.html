@@ -375,9 +375,40 @@
       radial-gradient(40% 30% at 40% 60%, rgba(205,189,144,.18), transparent 70%);
   }
   @media(prefers-reduced-motion:reduce){#mglow{display:none}.plan.pop{animation:none}}
+  /* ===== URGENCIA LANZAMIENTO (v8) ===== */
+  .urg-bar{
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+    margin:12px 16px 0;padding:10px 18px;border-radius:999px;
+    font-size:.88rem;font-weight:700;text-align:center;color:var(--ink);
+    background:linear-gradient(165deg,rgba(255,255,255,.85),rgba(255,255,255,.55));
+    -webkit-backdrop-filter:blur(18px) saturate(180%);backdrop-filter:blur(18px) saturate(180%);
+    border:1px solid rgba(190,172,134,.6);
+    box-shadow:0 10px 26px rgba(168,156,126,.25), inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .urg-bar b{color:#8a5a0e}
+  .urg-bar .pill{
+    background:var(--gold-grad);color:#fff;padding:3px 14px;border-radius:999px;
+    font-size:.76rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
+    box-shadow:0 4px 12px rgba(168,156,126,.35);text-shadow:0 1px 2px rgba(90,60,0,.25);
+  }
+  .urg-bar .hl{color:#8a5a0e}
+  @media(max-width:720px){.urg-bar{margin:8px 10px 0;font-size:.8rem;gap:6px}}
+  .promo-tag{
+    display:block;margin-top:14px;padding:8px 12px;border-radius:12px;
+    font-size:.8rem;font-weight:800;text-align:center;color:#7a5c12;
+    background:linear-gradient(165deg,rgba(255,255,255,.85),rgba(255,255,255,.45));
+    border:1px dashed rgba(178,160,107,.85);
+  }
+  .cupos-note{
+    text-align:center;max-width:620px;margin:-26px auto 38px;
+    font-size:.92rem;color:var(--mut);
+  }
+  .cupos-note b{color:#8a5a0e}
 </style>
 </head>
 <body>
+
+<div class="urg-bar">🚀 Lanzamiento: <span class="hl">20% OFF en el armado</span> · cupos limitados de septiembre · <span class="pill" id="urgDays">hasta el 30/09</span></div>
 
 <nav>
   <div class="wrap">
@@ -581,11 +612,13 @@
     <p class="k">Inversión</p>
     <h2>Precios simples, sin sorpresas</h2>
     <p class="lead">Pago único por el armado + mensualidad chica por mantenimiento, dominio y soporte. Sin costos ocultos.<br><br>📊 <b>Todos los planes incluyen el reporte semanal de actividad:</b> chats atendidos, ventas y oportunidades perdidas — para que sepas qué está pasando sin mirar nada.</p>
+    <p class="cupos-note">⚡ <b>Solo 3 armados por mes</b> para mantener la calidad — cuando se llenan los cupos, la lista cierra hasta el mes siguiente.</p>
     <div class="plan-grid">
       <div class="plan">
         <h3>Bot WhatsApp</h3>
         <div class="who">Para locales y emprendimientos</div>
         <div class="amt">USD 300 <small>+ USD 30/mes</small></div>
+        <span class="promo-tag">🎉 20% OFF en el armado · hasta el 30/09</span>
         <ul>
           <li>Bot 24/7 en tu número</li>
           <li>Productos, precios y horarios</li>
@@ -599,6 +632,7 @@
         <h3>Web + Agente</h3>
         <div class="who">Para marcas que quieren vender online</div>
         <div class="amt">USD 600 <small>+ USD 50/mes</small></div>
+        <span class="promo-tag">🎉 20% OFF en el armado · hasta el 30/09</span>
         <ul>
           <li>Web profesional a medida</li>
           <li>Catálogo + carrito + pedidos</li>
@@ -612,6 +646,7 @@
         <h3>A medida</h3>
         <div class="who">Agentes y automatizaciones custom</div>
         <div class="amt">A consultar</div>
+        <span class="promo-tag">🎉 20% OFF en el armado · hasta el 30/09</span>
         <ul>
           <li>Agente dedicado de marca</li>
           <li>Automatización de procesos</li>
@@ -832,6 +867,21 @@
     g.style.transform='translate3d('+ev.clientX+'px,'+ev.clientY+'px,0)';
   });
   document.addEventListener('mouseleave',function(){g.style.opacity='0'});
+})();
+</script>
+<script>
+(function(){
+  /* urgencia real: cuenta los días que faltan para el fin de la promo (30/09) */
+  var end=new Date('2026-09-30T23:59:59-03:00'),el=document.getElementById('urgDays'),bar=document.querySelector('.urg-bar');
+  if(el){
+    var d=Math.ceil((end-Date.now())/864e5);
+    if(d<0){
+      if(bar)bar.remove();
+      [].forEach.call(document.querySelectorAll('.promo-tag,.cupos-note'),function(n){n.remove()});
+    } else {
+      el.textContent = d===0 ? '¡hoy es el último día!' : 'hasta el 30/09 · quedan '+d+' días';
+    }
+  }
 })();
 </script>
 </body>
