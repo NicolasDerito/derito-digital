@@ -320,6 +320,41 @@
   @keyframes glowPulse{0%,100%{box-shadow:0 10px 26px rgba(168,127,29,.35),0 0 0 rgba(217,182,74,0), inset 0 1px 0 rgba(255,255,255,.55)}50%{box-shadow:0 10px 30px rgba(168,127,29,.45),0 0 24px rgba(217,182,74,.35), inset 0 1px 0 rgba(255,255,255,.55)}}
   .card:hover,.plan:hover,.step:hover,.caso:hover,.gar:hover{box-shadow:0 0 0 1px rgba(217,182,74,.45),0 0 30px rgba(217,182,74,.18),0 18px 44px rgba(150,118,40,.18)}
   @media(prefers-reduced-motion:reduce){#fx-canvas{display:none}body::after{display:none}.btn-main{animation:none}}
+  /* ===== ULTRA GLASS + PREMIUM (v7) ===== */
+  /* vidrio más profundo: más translúcido + blur fuerte + saturación */
+  nav,.card,.step,.caso,.plan,details,.btn-ghost,.hero-tag{
+    background:linear-gradient(160deg,rgba(255,255,255,.52),rgba(255,255,255,.16))!important;
+    -webkit-backdrop-filter:blur(46px) saturate(240%)!important;
+    backdrop-filter:blur(46px) saturate(240%)!important;
+  }
+  .chat-card{
+    background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.18))!important;
+    -webkit-backdrop-filter:blur(46px) saturate(240%)!important;
+    backdrop-filter:blur(46px) saturate(240%)!important;
+  }
+  .card,.plan,.step,.caso,.gar{transform-style:preserve-3d;will-change:transform}
+  /* glow ambiental que acompaña al mouse */
+  #mglow{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:-1;
+    background:radial-gradient(circle,rgba(217,182,74,.16),rgba(217,182,74,.05) 45%,transparent 70%);opacity:0;transition:opacity .5s}
+  /* brillo que barre el botón principal */
+  .btn-main{position:relative;overflow:hidden}
+  .btn-main::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
+    background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-20deg);transition:left .6s ease}
+  .btn-main:hover::after{left:130%}
+  /* plan destacado con respiración dorada */
+  .plan.pop{animation:popBreath 4s ease-in-out infinite}
+  @keyframes popBreath{0%,100%{box-shadow:0 22px 55px rgba(168,127,29,.25),0 0 0 rgba(217,182,74,0)}50%{box-shadow:0 22px 55px rgba(168,127,29,.30),0 0 34px rgba(217,182,74,.35)}}
+  /* orbes más presentes para que el vidrio tenga material */
+  body::before{
+    background:
+      radial-gradient(46% 36% at 84% 4%, rgba(217,182,74,.62), transparent 68%),
+      radial-gradient(36% 32% at 2% 28%, rgba(246,232,190,1), transparent 66%),
+      radial-gradient(42% 36% at 94% 60%, rgba(212,170,70,.55), transparent 68%),
+      radial-gradient(34% 32% at 6% 86%, rgba(246,232,190,1), transparent 66%),
+      radial-gradient(40% 30% at 40% 60%, rgba(217,182,74,.18), transparent 70%);
+  }
+  @media(prefers-reduced-motion:reduce){#mglow{display:none}.plan.pop{animation:none}}
 </style>
 </head>
 <body>
@@ -746,6 +781,31 @@
     document.addEventListener('visibilitychange',function(){running=!document.hidden;if(running)requestAnimationFrame(frame)});
     requestAnimationFrame(frame);
   } else { cv.style.display='none'; }
+})();
+</script>
+<script>
+(function(){
+  var fine=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(!fine)return;
+  /* tilt 3D premium en tarjetas */
+  var els=[].slice.call(document.querySelectorAll('.card,.plan,.step,.caso,.gar'));
+  els.forEach(function(el){
+    el.addEventListener('mousemove',function(ev){
+      var r=el.getBoundingClientRect();
+      var px=(ev.clientX-r.left)/r.width-.5, py=(ev.clientY-r.top)/r.height-.5;
+      el.style.transform='perspective(1100px) rotateX('+(-py*5).toFixed(2)+'deg) rotateY('+(px*7).toFixed(2)+'deg) translateY(-4px)';
+    });
+    el.addEventListener('mouseleave',function(){el.style.transform=''});
+  });
+  /* glow ambiental que sigue al cursor */
+  var g=document.createElement('div');g.id='mglow';document.body.appendChild(g);
+  var last=0;
+  document.addEventListener('mousemove',function(ev){
+    if(ev.timeStamp-last<16)return;last=ev.timeStamp;
+    g.style.opacity='1';
+    g.style.transform='translate3d('+ev.clientX+'px,'+ev.clientY+'px,0)';
+  });
+  document.addEventListener('mouseleave',function(){g.style.opacity='0'});
 })();
 </script>
 </body>
