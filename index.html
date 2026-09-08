@@ -670,8 +670,10 @@
 (function(){
   var fab=document.getElementById('chatFab'),box=document.getElementById('chatBox'),msgs=document.getElementById('chatMsgs'),
       inp=document.getElementById('chatText'),send=document.getElementById('chatSend'),close=document.getElementById('chatClose'),wafab=document.querySelector('.wa-fab');
-  var sid=localStorage.getItem('derito_sid')||('v'+Math.random().toString(36).slice(2,10));
-  localStorage.setItem('derito_sid',sid);
+  /* sesión por visita: sessionStorage = conversación nueva en cada pestaña/visita
+     (localStorage guardaba el mismo ID para siempre y el agente mezclaba charlas viejas) */
+  var sid=sessionStorage.getItem('derito_sid')||('v'+Math.random().toString(36).slice(2,10));
+  sessionStorage.setItem('derito_sid',sid);
   function add(txt,who){
     var d=document.createElement('div');d.className='cmsg '+who;d.textContent=txt;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
   }
