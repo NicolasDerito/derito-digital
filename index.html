@@ -290,84 +290,18 @@
     .chat-msgs{flex:1;min-height:0}
   }
 
-  /* ===== GLASS PROTAGONISTA (v3) ===== */
+  /* ===== GLASS PROTAGONISTA (identidad, sin efectos decorativos) ===== */
   nav,.card,.step,.caso,.plan,.btn-ghost,details,.hero-tag{
-    background:linear-gradient(165deg,rgba(255,255,255,.70),rgba(255,255,255,.32));
-    -webkit-backdrop-filter:blur(30px) saturate(200%);
-    backdrop-filter:blur(30px) saturate(200%);
-  }
-  /* ===== FUTURISMO SUAVE (v5) ===== */
-  /* orbes de fondo con deriva lenta */
-  @keyframes orbDrift{from{transform:translate3d(-1.5%,-1%,0) scale(1)}to{transform:translate3d(1.5%,2%,0) scale(1.05)}}
-  body::before{animation:orbDrift 26s ease-in-out infinite alternate}
-
-  /* brillo dorado que recorre el título */
-  @keyframes shine{0%{background-position:200% 50%}100%{background-position:-200% 50%}}
-  h1 .grad{
-    background:linear-gradient(100deg,#a08a52 20%,#f1ead6 40%,#cdbd90 55%,#a08a52 80%);
-    background-size:250% 100%;
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:shine 7s linear infinite;
-  }
-
-  /* reflejo que sigue el mouse en tarjetas */
-  .card,.plan,.caso,.gar,.step{position:relative}
-  .card::after,.plan::after,.caso::after,.gar::after,.step::after{
-    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
-    background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.45),transparent 65%);
-    opacity:0;transition:opacity .35s;
-  }
-  .card:hover::after,.plan:hover::after,.caso:hover::after,.gar:hover::after,.step:hover::after{opacity:1}
-
-  /* entrada suave al scrollear (la clase .rv la pone JS; sin JS nada cambia) */
-  .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-  .rv.in{opacity:1;transform:none}
-
-  @media(prefers-reduced-motion:reduce){
-    body::before,h1 .grad{animation:none!important}
-    .rv{opacity:1!important;transform:none!important}
-  }
-  /* ===== FUTURISMO ALTO (v6) ===== */
-  body::after{ /* grid tecnológico sutil sobre el fondo */
-    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background-image:linear-gradient(rgba(160,138,82,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(160,138,82,.07) 1px,transparent 1px);
-    background-size:44px 44px;
-    -webkit-mask-image:radial-gradient(ellipse at 50% 30%,rgba(0,0,0,.9),transparent 75%);
-    mask-image:radial-gradient(ellipse at 50% 30%,rgba(0,0,0,.9),transparent 75%);
-  }
-  #fx-canvas{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5}
-  h1 .grad{animation:shine 5s linear infinite}
-  .hero-tag{border-color:rgba(205,189,144,.55);box-shadow:0 0 18px rgba(205,189,144,.25), inset 0 0 12px rgba(255,255,255,.5)}
-  .btn-main{animation:glowPulse 3s ease-in-out infinite}
-  @keyframes glowPulse{0%,100%{box-shadow:0 10px 26px rgba(160,138,82,.35),0 0 0 rgba(205,189,144,0), inset 0 1px 0 rgba(255,255,255,.55)}50%{box-shadow:0 10px 30px rgba(160,138,82,.45),0 0 24px rgba(205,189,144,.35), inset 0 1px 0 rgba(255,255,255,.55)}}
-  .card:hover,.plan:hover,.step:hover,.caso:hover,.gar:hover{box-shadow:0 0 0 1px rgba(205,189,144,.45),0 0 30px rgba(205,189,144,.18),0 18px 44px rgba(160,146,116,.18)}
-  @media(prefers-reduced-motion:reduce){#fx-canvas{display:none}body::after{display:none}.btn-main{animation:none}}
-  /* ===== ULTRA GLASS + PREMIUM (v7) ===== */
-  /* vidrio más profundo: más translúcido + blur fuerte + saturación */
-  nav,.card,.step,.caso,.plan,details,.btn-ghost,.hero-tag{
-    background:linear-gradient(160deg,rgba(255,255,255,.52),rgba(255,255,255,.16))!important;
-    -webkit-backdrop-filter:blur(46px) saturate(240%)!important;
-    backdrop-filter:blur(46px) saturate(240%)!important;
+    background:linear-gradient(160deg,rgba(255,255,255,.52),rgba(255,255,255,.16));
+    -webkit-backdrop-filter:blur(46px) saturate(240%);
+    backdrop-filter:blur(46px) saturate(240%);
   }
   .chat-card{
-    background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.18))!important;
-    -webkit-backdrop-filter:blur(46px) saturate(240%)!important;
-    backdrop-filter:blur(46px) saturate(240%)!important;
+    background:linear-gradient(160deg,rgba(255,255,255,.55),rgba(255,255,255,.18));
+    -webkit-backdrop-filter:blur(46px) saturate(240%);
+    backdrop-filter:blur(46px) saturate(240%);
   }
-  .card,.plan,.step,.caso,.gar{transform-style:preserve-3d;will-change:transform}
-  /* glow ambiental que acompaña al mouse */
-  #mglow{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:-1;
-    background:radial-gradient(circle,rgba(205,189,144,.16),rgba(205,189,144,.05) 45%,transparent 70%);opacity:0;transition:opacity .5s}
-  /* brillo que barre el botón principal */
-  .btn-main{position:relative;overflow:hidden}
-  .btn-main::after{content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
-    background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
-    transform:skewX(-20deg);transition:left .6s ease}
-  .btn-main:hover::after{left:130%}
-  /* plan destacado con respiración dorada */
-  .plan.pop{animation:popBreath 4s ease-in-out infinite}
-  @keyframes popBreath{0%,100%{box-shadow:0 22px 55px rgba(160,138,82,.25),0 0 0 rgba(205,189,144,0)}50%{box-shadow:0 22px 55px rgba(160,138,82,.30),0 0 34px rgba(205,189,144,.35)}}
-  /* orbes más presentes para que el vidrio tenga material */
+  /* orbes fijos de fondo: dan material al vidrio, sin movimiento */
   body::before{
     background:
       radial-gradient(46% 36% at 84% 4%, rgba(205,189,144,.62), transparent 68%),
@@ -376,7 +310,6 @@
       radial-gradient(34% 32% at 6% 86%, rgba(245,240,226,1), transparent 66%),
       radial-gradient(40% 30% at 40% 60%, rgba(205,189,144,.18), transparent 70%);
   }
-  @media(prefers-reduced-motion:reduce){#mglow{display:none}.plan.pop{animation:none}}
   /* ===== URGENCIA LANZAMIENTO (v8) ===== */
   .urg-bar{
     display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
@@ -762,113 +695,6 @@
   close.addEventListener('click',function(){box.classList.remove('open');fab.style.display='flex';if(wafab)wafab.style.display='flex'});
   send.addEventListener('click',sendMsg);
   inp.addEventListener('keydown',function(e){if(e.key==='Enter')sendMsg()});
-})();
-</script>
-<script>
-(function(){
-  /* reveal suave al scrollear */
-  var els=[].slice.call(document.querySelectorAll('.card,.step,.plan,.gar,.caso,details'));
-  if('IntersectionObserver' in window && els.length){
-    els.forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=(i%4)*70+'ms'});
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(e.isIntersecting){
-          e.target.classList.add('in');
-          setTimeout(function(){e.target.style.transitionDelay=''},900);
-          io.unobserve(e.target);
-        }
-      });
-    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-    els.forEach(function(el){io.observe(el)});
-  }
-  /* reflejo spotlight que sigue al mouse */
-  var t=document.querySelectorAll('.card,.plan,.caso,.gar,.step');
-  t.forEach(function(el){
-    el.addEventListener('mousemove',function(ev){
-      var r=el.getBoundingClientRect();
-      el.style.setProperty('--mx',(ev.clientX-r.left)+'px');
-      el.style.setProperty('--my',(ev.clientY-r.top)+'px');
-    });
-  });
-  /* contadores animados en cifras (+5, 100%, 24/7, 0%, 1 min) */
-  function runCount(el){
-    var txt=el.textContent.trim(),m=txt.match(/^([^0-9]*?)([0-9]+)(.*)$/);
-    if(!m)return;var pre=m[1],target=parseInt(m[2],10),suf=m[3];
-    if(target===0||target>9999)return;
-    var t0=null,dur=900;
-    function step(ts){
-      if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1),eased=1-Math.pow(1-p,3);
-      el.textContent=pre+Math.round(target*eased)+suf;
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  var nums=document.querySelectorAll('.hero-proof b,.caso .num b');
-  if('IntersectionObserver' in window && nums.length){
-    var io2=new IntersectionObserver(function(es){
-      es.forEach(function(e){if(e.isIntersecting){runCount(e.target);io2.unobserve(e.target)}});
-    },{threshold:.5});
-    nums.forEach(function(el){io2.observe(el)});
-  } else {
-    nums.forEach(runCount);
-  }
-})();
-</script>
-<script>
-(function(){
-  /* partículas conectadas estilo red futurista (dorado sutil) */
-  var cv=document.createElement('canvas');cv.id='fx-canvas';
-  document.body.appendChild(cv);
-  var ctx=cv.getContext('2d'),W,H,parts=[],running=true;
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function size(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;
-    var n=Math.min(W,H)<600?22:45;parts=[];
-    for(var i=0;i<n;i++)parts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.6});
-  }
-  function frame(){
-    if(!running)return;
-    ctx.clearRect(0,0,W,H);
-    for(var i=0;i<parts.length;i++){
-      var p=parts[i];p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,7);ctx.fillStyle='rgba(160,138,82,.55)';ctx.fill();
-      for(var j=i+1;j<parts.length;j++){
-        var q=parts[j],dx=p.x-q.x,dy=p.y-q.y,d=dx*dx+dy*dy;
-        if(d<16900){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(205,189,144,'+(0.16*(1-d/16900)).toFixed(3)+')';ctx.lineWidth=1;ctx.stroke();}
-      }
-    }
-    requestAnimationFrame(frame);
-  }
-  if(!reduce){
-    size();window.addEventListener('resize',size);
-    document.addEventListener('visibilitychange',function(){running=!document.hidden;if(running)requestAnimationFrame(frame)});
-    requestAnimationFrame(frame);
-  } else { cv.style.display='none'; }
-})();
-</script>
-<script>
-(function(){
-  var fine=window.matchMedia&&window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  if(!fine)return;
-  /* tilt 3D premium en tarjetas */
-  var els=[].slice.call(document.querySelectorAll('.card,.plan,.step,.caso,.gar'));
-  els.forEach(function(el){
-    el.addEventListener('mousemove',function(ev){
-      var r=el.getBoundingClientRect();
-      var px=(ev.clientX-r.left)/r.width-.5, py=(ev.clientY-r.top)/r.height-.5;
-      el.style.transform='perspective(1100px) rotateX('+(-py*5).toFixed(2)+'deg) rotateY('+(px*7).toFixed(2)+'deg) translateY(-4px)';
-    });
-    el.addEventListener('mouseleave',function(){el.style.transform=''});
-  });
-  /* glow ambiental que sigue al cursor */
-  var g=document.createElement('div');g.id='mglow';document.body.appendChild(g);
-  var last=0;
-  document.addEventListener('mousemove',function(ev){
-    if(ev.timeStamp-last<16)return;last=ev.timeStamp;
-    g.style.opacity='1';
-    g.style.transform='translate3d('+ev.clientX+'px,'+ev.clientY+'px,0)';
-  });
-  document.addEventListener('mouseleave',function(){g.style.opacity='0'});
 })();
 </script>
 <script>
