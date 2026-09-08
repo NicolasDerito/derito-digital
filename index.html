@@ -44,7 +44,10 @@
       radial-gradient(34% 32% at 6% 86%, rgba(246,232,190,.90), transparent 66%),
       radial-gradient(60% 50% at 50% 50%, rgba(255,255,255,0), transparent 55%);
   }
-  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 24px}
+  /* En pantallas grandes el contenido se ensancha para no dejar los costados vacíos */
+  @media(min-width:1500px){.wrap{max-width:1300px}}
+  @media(min-width:1900px){.wrap{max-width:1480px}}
   a{color:#9a7418;text-decoration:none}
 
   /* NAV — vidrio */
