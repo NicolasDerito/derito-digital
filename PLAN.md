@@ -102,11 +102,11 @@ Reglas de oro:
 Objetivo: dolor real + urgencia + tamaño. Sin dolor no hay venta.
 
 3) PROPUESTA (mismo día, por escrito):
-"Con lo que me contaste, lo que te conviene es [producto]. Te lo armo así: [2-3 beneficios concretos DE SU caso]. El armado es USD X — con el 20% de lanzamiento queda en USD Y hasta el 30/09 — y la mensualidad es USD Z/mes, que cubre mantenimiento, hosting y cambios por chat: no pagás de nuevo por cada modificación. Lo tenés andando en [2-3 días / 1-2 semanas]. La seña es 50% y recién se paga cuando aprobás el diseño funcionando."
+"Con lo que me contaste, lo que te conviene es [producto]. Te lo armo así: [2-3 beneficios concretos DE SU caso]. El armado es USD X — con el 10% de lanzamiento queda en USD Y hasta el 30/09 — y la mensualidad es USD Z/mes, que cubre mantenimiento, hosting y cambios por chat: no pagás de nuevo por cada modificación. Lo tenés andando en [2-3 días / 1-2 semanas]. La seña es 50% y recién se paga cuando aprobás el diseño funcionando."
 
 4) OBJECIONES (respuestas listas):
 - "Es caro" → "Comparalo con lo que perdés hoy: cada consulta que no contestás en el momento es una venta que se va a la competencia. Sale menos que medio día de un empleado y atiende 24/7, sin aguinaldo ni franco."
-- "Lo pienso" → "Pensalo con el número en la mano, que la charla no te costó nada. El 20% de lanzamiento corre hasta el 30/09 y tomo solo 3 armados por mes: cuando se llenan, cierro la lista. ¿Qué duda puntual tenés? Te la respondo y decidís tranquilo."
+- "Lo pienso" → "Pensalo con el número en la mano, que la charla no te costó nada. El 10% de lanzamiento corre hasta el 30/09 y tomo solo 3 armados por mes: cuando se llenan, cierro la lista. ¿Qué duda puntual tenés? Te la respondo y decidís tranquilo."
 - "No sé de tecnología" → "No hace falta: todo se maneja por chat. Si sabés mandar un WhatsApp, sabés usarlo. Te lo enseño en 15 minutos."
 - "Ya tengo página / alguien que me hace eso" → "Entonces ya sabés lo que cuesta mantenerla al día. La diferencia: esto no es una página, es un empleado digital que atiende, actualiza el catálogo y toma pedidos solo. ¿Esa página te responde a las 2 de la mañana?"
 - "¿Y si no funciona?" → "Por eso la seña es cuando lo ves andando, no antes. Y la mensualidad incluye ajustes: si algo no te sirve, se cambia."
