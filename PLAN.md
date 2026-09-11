@@ -70,7 +70,7 @@ Semana 3-4:
 
 Objetivo: que la landing ande en un `.com.ar` propio (hoy vive en https://nicolasderito.github.io/derito-digital/). El mail a usar para todo: nicolasderito666@gmail.com.
 
-- **Dominio**: `deritodigital.com.ar` estaba DISPONIBLE al 2026-09-07 (verificado en whois.nic.ar; también `derito-digital.com.ar` disponible).
+- **Dominio ELEGIDO (Nicolás, 2026-09-10): `deritodigital.com.ar`** — disponible, verificado en whois.nic.ar (07/09 y 10/09). Alternativa: `derito-digital.com.ar` (también libre).
 - **Registro**: los `.com.ar` se registran en NIC Argentina a través de un agente de registro habilitado (ej. Dondominio y similares). Requiere CUIT/CUIL del titular. Registrar a nombre de Nicolás con el mail de arriba.
 - **DNS hacia GitHub Pages** (el hosting no cambia, no hay que migrar nada):
   - Apex `deritodigital.com.ar` → 4 registros A: 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
