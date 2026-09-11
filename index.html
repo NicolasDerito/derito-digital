@@ -681,7 +681,7 @@
   function sendMsg(){
     var t=inp.value.trim();if(!t)return;inp.value='';
     add(t,'user');add('Escribiendo…','typing');
-    var eps=['/api/chat','https://feb-advertiser-together-immune.trycloudflare.com/api/chat'];
+    var eps=['/api/chat','https://impression-shannon-agreements-blvd.trycloudflare.com/api/chat'];
     function tryEp(i){
       if(i>=eps.length)return Promise.reject(new Error('sin backend'));
       return fetch(eps[i],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session:sid,message:t})})
