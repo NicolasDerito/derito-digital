@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web con catálogo y agente administrador para tiendas · Derito Digital</title>
+<meta name="description" content="Página web con catálogo, carrito y pedidos por WhatsApp o transferencia, más un agente de IA que actualiza precios, productos y textos cuando se lo pedís por chat.">
+<link rel="canonical" href="https://deritodigital.com.ar/tiendas/">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Derito Digital">
+<meta property="og:title" content="Web con catálogo y agente administrador para tiendas · Derito Digital">
+<meta property="og:description" content="Página web con catálogo, carrito y pedidos por WhatsApp o transferencia, más un agente de IA que actualiza precios, productos y textos cuando se lo pedís por chat.">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://deritodigital.com.ar/tiendas/">
+<meta property="og:image" content="https://deritodigital.com.ar/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://deritodigital.com.ar/og.png">
+<meta name="theme-color" content="#fffaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141110" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23a08a52'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23fff' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/xn7gYHE41ni1AdIRggexSvfedN4.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/estilo.css">
+<script>document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Web + agente administrador", "serviceType": "Web + agente administrador", "provider": {"@type": "ProfessionalService", "name": "Derito Digital", "telephone": "+5491138026712", "url": "https://deritodigital.com.ar/"}, "areaServed": {"@type": "Country", "name": "Argentina"}, "url": "https://deritodigital.com.ar/tiendas/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Pago comisión por venta?", "acceptedAnswer": {"@type": "Answer", "text": "No. Cero comisiones. Cobrás por transferencia, alias o el medio que ya uses; la web no se queda con nada."}}, {"@type": "Question", "name": "¿Puedo cargar productos yo?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, y es más simple que un panel: le escribís al agente lo que querés cambiar y lo hace."}}, {"@type": "Question", "name": "¿En cuánto tiempo está?", "acceptedAnswer": {"@type": "Answer", "text": "Una web completa, entre 1 y 2 semanas según el proyecto."}}]}</script>
+</head>
+<body>
+<div class="mesh" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.6l2.2 5.3 5.3 2.1-5.3 2.1L12 17.4l-2.2-5.3L4.5 10l5.3-2.1L12 2.6z"/></symbol>
+    <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8h12l1.1 12H4.9L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.6.5-1.5.1-1.5-.7V5.5z"/></symbol>
+    <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 6.2V3.4"/><circle cx="12" cy="2.4" r="1.1"/><rect x="2.6" y="9.4" width="18.8" height="10.2" rx="2.4"/><path d="M8.6 14.4h.01M15.4 14.4h.01"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10.6 3V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 16.1 4.6h.09a1.65 1.65 0 0 0 1.51-1l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 20.2 9v.09a1.65 1.65 0 0 0 1 1.51H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4.6" width="18" height="16.4" rx="2.2"/><path d="M8 2.6v4M16 2.6v4M3 10h18"/></symbol>
+    <symbol id="i-coins" viewBox="0 0 24 24"><ellipse cx="12" cy="5.6" rx="8" ry="3.1"/><path d="M4 5.6v6c0 1.7 3.6 3.1 8 3.1s8-1.4 8-3.1v-6"/><path d="M4 11.6v6c0 1.7 3.6 3.1 8 3.1s8-1.4 8-3.1v-6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2.6l7.5 2.9v6c0 5-3.2 8.4-7.5 10-4.3-1.6-7.5-5-7.5-10v-6l7.5-2.9z"/><path d="M9 12l2.1 2.1L15 10"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13.2 2.5L4.4 14h6.2l-1.1 7.5L20 10h-6.4l1-7.5z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7.4A2.4 2.4 0 0 0 5 5.4v13.2A2.4 2.4 0 0 0 7.4 21h9.2a2.4 2.4 0 0 0 2.4-2.4V8l-5-5z"/><path d="M14 3v5h5M9 13.5h6M9 17.2h4"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.4" y="10.6" width="15.2" height="10.4" rx="2.2"/><path d="M8.2 10.6V7.4a3.8 3.8 0 0 1 7.6 0v3.2"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.2"/><circle cx="12" cy="12" r="4"/><path d="M17.4 6.6h.01"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.6" y="4.6" width="18.8" height="14.8" rx="2.2"/><path d="M3.4 6.4L12 13l8.6-6.6"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2.4" width="12" height="19.2" rx="2.6"/><path d="M10.8 18.6h2.4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.2"/><path d="M12 7v5.3l3.4 2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4.6 12h14.2M13 5.8l6.2 6.2-6.2 6.2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.2 12.6l5 5L19.8 6.6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="M3.6 11.6l16.8-7.9-7.9 16.8-1.9-7-7-1.9z"/></symbol>
+  </defs>
+</svg>
+<nav id="nav">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Derito Digital, inicio">
+      <span class="mark" aria-hidden="true">D</span>Derito<em>Digital</em>
+    </a>
+    <div class="links">
+      <a href="/#servicios">Servicios</a>
+      <a href="/#trabajos">Trabajos</a>
+      <a href="/#como">Proceso</a>
+      <a href="/#precios">Precios</a>
+      <a href="/#faq">FAQ</a>
+      <a class="cta" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20un%20agente%20que%20venda%20por%20m%C3%AD" target="_blank" rel="noopener">Empezar</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</nav>
+<div class="mnav" id="mnav">
+  <a href="/#servicios">Servicios<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/#trabajos">Trabajos<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/#como">Proceso<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/#precios">Precios<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/#faq">FAQ<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a class="mcta" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20un%20agente%20que%20venda%20por%20m%C3%AD" target="_blank" rel="noopener">Quiero mi agente</a>
+</div>
+
+<header>
+  <div class="wrap">
+    <div style="max-width:860px">
+      <span class="hero-tag a" style="animation-delay:.05s"><span class="dot" aria-hidden="true"></span>Web + agente administrador</span>
+      <h1 class="a" style="animation-delay:.14s">Tu tienda online, <em>sin comisiones</em> y sin depender de nadie</h1>
+      <p class="sub a" style="animation-delay:.24s">Web con catálogo, carrito y pedidos por WhatsApp o transferencia. Y un agente que actualiza precios, productos y textos cuando se lo pedís por chat. <b>Para regalerías, indumentaria, distribuidoras y emprendimientos.</b></p>
+      <div class="hero-actions a" style="animation-delay:.34s">
+        <a class="btn btn-main" href="https://wa.me/5491138026712?text=Quiero%20mi%20tienda%20online" target="_blank" rel="noopener">Quiero mi tienda online <svg class="i"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="/#precios">Ver precios</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="k">Por qué no arrancás</p><h2>Tres trabas que <em>se repiten</em></h2></div>
+      <p class="lead">No es que no quieras vender online. Es que las opciones que probaste te dejaron a mitad de camino.</p>
+    </div>
+    <div class="grid">
+      <div class="card reveal" style="--d:0ms">
+        <div class="ic"><svg class="i"><use href="#i-bolt"/></svg></div>
+        <h3>Las comisiones te comen el margen</h3>
+        <p>Cada venta que pasa por un marketplace te deja menos. Trabajás para la plataforma.</p>
+      </div>
+      <div class="card reveal" style="--d:80ms">
+        <div class="ic"><svg class="i"><use href="#i-bolt"/></svg></div>
+        <h3>Actualizar es una traba</h3>
+        <p>Cambiar un precio no debería requerir pagarle a alguien ni esperar dos días.</p>
+      </div>
+      <div class="card reveal" style="--d:160ms">
+        <div class="ic"><svg class="i"><use href="#i-bolt"/></svg></div>
+        <h3>El carrito que se abandona</h3>
+        <p>Sin una forma simple de cerrar el pedido, el cliente se va y no vuelve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="banda">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><p class="k">Cómo funciona</p><h2>Cómo funciona <em>por dentro</em></h2></div>
+      <p class="lead">Sin vueltas ni tecnicismos: <b>hablamos, te lo armo y te lo entrego andando.</b></p>
+    </div>
+    <div class="steps">
+      <div class="step reveal" style="--d:0ms"><div class="n">1</div><h4>Te armo la web</h4><p>Diseño a medida, catálogo, carrito y checkout por WhatsApp o transferencia. Dominio y hosting incluidos.</p></div>
+      <div class="step reveal" style="--d:90ms"><div class="n">2</div><h4>Le pedís por chat</h4><p>&quot;Cambiá el precio del porta-mate a 14.000&quot;. El agente lo hace y lo publica.</p></div>
+      <div class="step reveal" style="--d:180ms"><div class="n">3</div><h4>Vendés sin comisión</h4><p>Los pedidos te llegan directo. El margen es tuyo, entero.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="plan-grid" style="grid-template-columns:1fr;max-width:640px;margin:0 auto">
+      <div class="plan pop reveal">
+        <div class="flag">10% OFF hasta el 30/09</div>
+        <h3>Web + agente administrador</h3>
+        <div class="who">Pago único por el armado + mensualidad de mantenimiento</div>
+        <div class="amt"><s>USD 600</s> <b class="now">USD 540</b> <small>+ USD 30/mes de mantenimiento</small></div>
+        <ul>
+          <li><svg class="i"><use href="#i-check"/></svg>Diseño a medida + dominio + hosting</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Catálogo y carrito sin comisiones</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Checkout por WhatsApp o transferencia</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Agente que actualiza todo por chat</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Te enseño a usarlo en 15 minutos</li>
+          <li><svg class="i"><use href="#i-check"/></svg>Reporte semanal de actividad</li>
+        </ul>
+        <a class="btn btn-main" href="https://wa.me/5491138026712?text=Quiero%20mi%20tienda%20online" target="_blank" rel="noopener">Elegir plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap faq-wrap">
+    <div class="sec-head reveal" style="grid-template-columns:1fr">
+      <div><p class="k">Dudas frecuentes</p><h2>Lo que <em>todos preguntan</em></h2></div>
+    </div>
+    <div class="reveal">
+        <details><summary>¿Pago comisión por venta?</summary><p>No. Cero comisiones. Cobrás por transferencia, alias o el medio que ya uses; la web no se queda con nada.</p></details>
+        <details><summary>¿Puedo cargar productos yo?</summary><p>Sí, y es más simple que un panel: le escribís al agente lo que querés cambiar y lo hace.</p></details>
+        <details><summary>¿En cuánto tiempo está?</summary><p>Una web completa, entre 1 y 2 semanas según el proyecto.</p></details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:var(--s6)">
+  <div class="wrap contacto">
+    <div class="reveal">
+      <p class="k" style="justify-content:center">Contacto</p>
+      <h2>¿Hablamos de <em>tu caso</em>?</h2>
+      <p class="lead">Contame cómo trabajás hoy y te digo si esto te sirve, cuánto sale y en cuánto tiempo lo tenés. Sin compromiso.</p>
+      <div class="contacto-actions">
+        <a class="whats" href="https://wa.me/5491138026712?text=Quiero%20mi%20tienda%20online" target="_blank" rel="noopener">
+          <svg class="i fill"><use href="#i-wa"/></svg>Escribime por WhatsApp
+        </a>
+        <a class="ig" href="/#trabajos"><svg class="i"><use href="#i-bag"/></svg>Ver trabajos reales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-links">
+      <a href="https://wa.me/5491138026712?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank" rel="noopener"><svg class="i"><use href="#i-wa"/></svg>WhatsApp</a>
+      <a href="mailto:nicolasderito666@gmail.com"><svg class="i"><use href="#i-mail"/></svg>nicolasderito666@gmail.com</a>
+      <a href="https://www.instagram.com/deritodigital/" target="_blank" rel="noopener"><svg class="i"><use href="#i-ig"/></svg>@deritodigital</a>
+    </div>
+    <p>© 2026 Derito Digital — Webs y agentes de IA que venden por vos.</p>
+    <p style="margin-top:6px;opacity:.78">Tus datos y los de tus clientes son privados y no se comparten con nadie.</p>
+  </div>
+</footer>
+<a class="wa-fab" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20saber%20m%C3%A1s%20sobre%20tus%20servicios" target="_blank" rel="noopener" aria-label="Escribime por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script>
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px',threshold:.12});
+    [].forEach.call(items,function(i){io.observe(i)});
+  } else { [].forEach.call(items,function(i){i.classList.add('in')}); }
+  var nav=document.getElementById('nav'),prog=document.getElementById('progress'),tick=false;
+  function onScroll(){
+    var y=window.pageYOffset||document.documentElement.scrollTop;
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    if(nav)nav.classList.toggle('stuck',y>18);
+    if(prog)prog.style.width=(h>0?(y/h*100):0)+'%';
+    tick=false;
+  }
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(onScroll);}},{passive:true});
+  onScroll();
+  var t=document.getElementById('navToggle'),p=document.getElementById('mnav');
+  if(t&&p){
+    function set(o){document.body.classList.toggle('menu-open',o);t.setAttribute('aria-expanded',o?'true':'false');}
+    t.addEventListener('click',function(){set(!document.body.classList.contains('menu-open'));});
+    [].forEach.call(p.querySelectorAll('a'),function(a){a.addEventListener('click',function(){set(false);});});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});
+  }
+})();
+</script>
+</body>
+</html>
