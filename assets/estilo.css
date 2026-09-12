@@ -79,6 +79,8 @@
   @keyframes riseSm{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   @keyframes fade{from{opacity:0}to{opacity:1}}
   .a{animation:rise .9s var(--ease-out) both}
+  /* el h1 del hero es el LCP: no puede arrancar invisible ni con retardo */
+  .hero h1.a{animation:none}
   html.js .reveal{opacity:0;transform:translateY(30px);transition:opacity .85s var(--ease-out),transform .85s var(--ease-out);transition-delay:var(--d,0ms)}
   html.js .reveal.in{opacity:1;transform:none}
   html.js .reveal.x{transform:translateX(-28px)}
@@ -131,9 +133,12 @@
   .cta:hover,nav .links a.cta:hover{background:var(--gold-grad);color:#fff!important;transform:translateY(-2px);
     box-shadow:0 12px 30px rgba(150,66,31,.45),inset 0 1px 0 rgba(255,255,255,.5)}
   .cta:active{transform:translateY(0) scale(.98)}
-  @media(max-width:860px){nav .links a:not(.cta){display:none}}
+  @media(max-width:1060px){nav .links a:not(.cta){display:none}}
   @media(max-width:720px){nav{margin:10px 10px 0}}
   @media(max-width:480px){.logo{font-size:1.1rem}nav .wrap{height:56px}}
+  /* 320px: el CTA del nav no entraba y recortaba el boton de menu */
+  @media(max-width:430px){nav .links{display:none}nav .wrap{padding:0 16px;height:54px}
+    .logo{font-size:1.04rem;gap:7px}.logo .mark{width:27px;height:27px;border-radius:8px;font-size:.88rem}}
 
   /* ============ HERO ============ */
   header{padding:var(--s6) 0 var(--s5);overflow:hidden}
@@ -259,7 +264,7 @@
   .card:hover::before{opacity:1}
   .card:hover{transform:translateY(-6px);border-color:rgba(190,130,100,.6);
     box-shadow:0 28px 60px rgba(160,115,95,.22),inset 0 1px 0 rgba(255,255,255,.95)}
-  .card.feature{grid-column:span 2;padding:34px 32px}
+  .card.feature{grid-column:span 1;padding:34px 32px}
   .ic{width:46px;height:46px;border-radius:var(--r1);display:flex;align-items:center;justify-content:center;
     background:linear-gradient(150deg,rgba(255,255,255,.9),rgba(248,230,219,.6));
     border:1px solid rgba(190,130,100,.35);color:var(--gold-deep);margin-bottom:16px;
@@ -275,7 +280,7 @@
   .price{margin-top:18px;padding-top:15px;border-top:1px dashed rgba(176,85,44,.35);font-size:.88rem;color:var(--mut)}
   .price b{color:var(--gold-deep);font-size:1.06rem;font-weight:700}
   .price .dst{color:#8f4423;font-weight:700}
-  @media(max-width:940px){.grid{grid-template-columns:repeat(2,1fr)}.card.feature{grid-column:span 2;padding:30px 28px}}
+  @media(max-width:940px){.grid{grid-template-columns:repeat(2,1fr)}.card.feature{padding:30px 28px}}
   @media(max-width:620px){.grid{grid-template-columns:1fr}.card.feature{grid-column:span 1}}
 
   /* ============ PROCESO ============ */
@@ -539,6 +544,7 @@
     nav .links a:not(.cta):hover{background:rgba(255,255,255,.07);color:#d4713f}
     .btn-ghost{box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.07)}
     .hero-tag{background:rgba(255,255,255,.06)}
+      .hero-tag,.ia-note,.price .dst{color:#e5a184}
     .chat-card{background:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
       border-color:rgba(255,255,255,.12);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.08)}
     .chat-glow{background:linear-gradient(140deg,rgba(255,255,255,.20),transparent 42%,rgba(200,110,70,.22));opacity:.55}
@@ -601,13 +607,13 @@
   body.menu-open .bars i:nth-child(2){opacity:0}
   body.menu-open .bars i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
   body.menu-open{overflow:hidden}
-  .mnav{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:center;
-    padding:76px 30px 40px;background:rgba(255,250,247,.94);
+  .mnav{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;
+    padding:82px 30px 40px;background:rgba(255,250,247,.94);
     -webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);
     opacity:0;visibility:hidden;transition:opacity .32s var(--ease),visibility .32s}
   body.menu-open .mnav{opacity:1;visibility:visible}
-  .mnav a{font-family:var(--font-display);font-size:1.7rem;font-weight:600;color:var(--ink);
-    padding:15px 4px;border-bottom:1px solid var(--gold-line);display:flex;align-items:center;justify-content:space-between;
+  .mnav a{font-family:var(--font-display);font-size:1.45rem;font-weight:600;color:var(--ink);
+    padding:12px 4px;border-bottom:1px solid var(--gold-line);display:flex;align-items:center;justify-content:space-between;
     opacity:0;transform:translateY(16px);transition:opacity .4s var(--ease),transform .45s var(--ease)}
   .mnav a .i{width:19px;height:19px;color:var(--gold1)}
   body.menu-open .mnav a{opacity:1;transform:none}
@@ -617,11 +623,14 @@
   body.menu-open .mnav a:nth-child(4){transition-delay:.21s}
   body.menu-open .mnav a:nth-child(5){transition-delay:.26s}
   body.menu-open .mnav a:nth-child(6){transition-delay:.31s}
+  body.menu-open .mnav a:nth-child(7){transition-delay:.36s}
+  body.menu-open .mnav a:nth-child(8){transition-delay:.41s}
+  body.menu-open .mnav a:nth-child(9){transition-delay:.46s}
   .mnav .mcta{margin-top:28px;background:var(--gold-grad);color:#fff!important;border:0;border-radius:999px;
     justify-content:center;font-family:var(--font-body);font-size:1rem;font-weight:700;padding:16px;
     box-shadow:0 12px 30px rgba(150,66,31,.35)}
-  @media(max-width:860px){.nav-toggle{display:block}}
-  @media(min-width:861px){.mnav{display:none}}
+  @media(max-width:1060px){.nav-toggle{display:block}}
+  @media(min-width:1061px){.mnav{display:none}}
 
   /* ===== FORMULARIO (segundo canal: quien no usa WhatsApp) ===== */
   .form{max-width:660px;margin:0 auto;text-align:left;

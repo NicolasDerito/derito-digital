@@ -24,6 +24,7 @@
 <meta name="theme-color" content="#fffaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#141110" media="(prefers-color-scheme: dark)">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjeveQ7ZXk8g.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/xn7gYHE41ni1AdIRggexSvfedN4.woff2" crossorigin>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23a08a52'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23fff' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
 
@@ -106,6 +107,9 @@
     </a>
     <div class="links">
       <a href="#servicios">Servicios</a>
+      <a href="/turnos/">Turnos</a>
+      <a href="/cobranzas/">Cobranzas</a>
+      <a href="/tiendas/">Tiendas</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#como">Proceso</a>
       <a href="#precios">Precios</a>
@@ -120,8 +124,11 @@
 
 <div class="mnav" id="mnav">
   <a href="#servicios">Servicios<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/turnos/">Turnos<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/cobranzas/">Cobranzas<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="/tiendas/">Tiendas<svg class="i"><use href="#i-arrow"/></svg></a>
   <a href="#trabajos">Trabajos<svg class="i"><use href="#i-arrow"/></svg></a>
-  <a href="#como">Proceso<svg class="i"><use href="#i-arrow"/></svg></a>
+  <a href="#proceso">Proceso<svg class="i"><use href="#i-arrow"/></svg></a>
   <a href="#precios">Precios<svg class="i"><use href="#i-arrow"/></svg></a>
   <a href="#faq">FAQ<svg class="i"><use href="#i-arrow"/></svg></a>
   <a class="mcta" href="https://wa.me/5491138026712?text=Hola!%20Quiero%20un%20agente%20que%20venda%20por%20m%C3%AD" target="_blank" rel="noopener">Quiero mi agente</a>
@@ -647,17 +654,19 @@
     var t=inp.value.trim(); if(!t) return; inp.value='';
     add(t,'user'); add('Escribiendo\u2026','typing');
     if(demo){ setTimeout(function(){ responder(t); },620); return; }
-    var eps=['/api/chat','https://printed-sunday-terminals-numbers.trycloudflare.com/api/chat'];
-    function tryEp(i){
-      if(i>=eps.length) return Promise.reject(new Error('sin backend'));
-      return fetch(eps[i],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session:sid,message:t})})
-        .then(function(r){ if(!r.ok) throw new Error('http '+r.status); return r.json(); })
-        .catch(function(){ return tryEp(i+1); });
-    }
-    tryEp(0).then(function(j){
+    /* Un solo endpoint. Se saco '/api/chat': GitHub Pages es estatico y devolvia 405,
+       o sea un round-trip perdido en cada mensaje. Si el tunel cambia de URL, se toca SOLO esta linea. */
+    var CHAT_EP='https://printed-sunday-terminals-numbers.trycloudflare.com/api/chat';
+    var ctl=(typeof AbortController!=='undefined')?new AbortController():null;
+    var tmr=setTimeout(function(){ if(ctl){ try{ctl.abort();}catch(e){} } },8000);
+    fetch(CHAT_EP,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({session:sid,message:t}),signal:ctl?ctl.signal:undefined})
+      .then(function(r){ clearTimeout(tmr); if(!r.ok) throw new Error('http '+r.status); return r.json(); })
+    .then(function(j){
       var ty=msgs.querySelector('.typing'); if(ty) ty.remove();
       add(j.reply||'(sin respuesta)','bot');
     }).catch(function(){
+      clearTimeout(tmr);
       demo=true;
       var ty=msgs.querySelector('.typing'); if(ty) ty.remove();
       add('Demostraci\u00f3n sin conexi\u00f3n al agente en vivo: respondo con ejemplos guardados. Para el agente real, escribime por WhatsApp.','sys');
