@@ -656,7 +656,7 @@
     if(demo){ setTimeout(function(){ responder(t); },620); return; }
     /* Un solo endpoint. Se saco '/api/chat': GitHub Pages es estatico y devolvia 405,
        o sea un round-trip perdido en cada mensaje. Si el tunel cambia de URL, se toca SOLO esta linea. */
-    var CHAT_EP='https://printed-sunday-terminals-numbers.trycloudflare.com/api/chat';
+    var CHAT_EP='https://tonight-duck-prohibited-violation.trycloudflare.com/api/chat';
     var ctl=(typeof AbortController!=='undefined')?new AbortController():null;
     var tmr=setTimeout(function(){ if(ctl){ try{ctl.abort();}catch(e){} } },8000);
     fetch(CHAT_EP,{method:'POST',headers:{'Content-Type':'application/json'},
