@@ -601,6 +601,7 @@
     .campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--gold1);box-shadow:0 0 0 3px rgba(212,113,63,.20)}
     .f-err{color:#f0a58c;background:rgba(212,113,63,.12);border-color:rgba(212,113,63,.35)}
     .cmsg.sys{background:rgba(255,255,255,.07);border-color:rgba(212,113,63,.30)}
+    .cmsg a{color:var(--gold2)}
   }
 
   /* ===== MENU MOVIL (antes: en celular no habia forma de navegar) ===== */
@@ -665,3 +666,6 @@
   .cmsg.sys{align-self:center;max-width:94%;text-align:center;font-size:.73rem;color:var(--mut);
     background:rgba(255,255,255,.55);border:1px solid rgba(190,130,100,.3);border-radius:999px;
     padding:5px 14px;font-weight:600;line-height:1.35}
+  /* Link dentro del chat (aviso de respaldo -> WhatsApp) */
+  .cmsg a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px;font-weight:700}
+  .cmsg a:hover{color:var(--gold1)}

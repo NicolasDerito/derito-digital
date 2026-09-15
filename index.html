@@ -618,6 +618,11 @@
     var d=document.createElement('div');d.className='cmsg '+who;d.textContent=txt;
     msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
   }
+  /* Igual que add, pero admite un link. El contenido es SIEMPRE propio, nunca del visitante. */
+  function addHTML(html,who){
+    var d=document.createElement('div');d.className='cmsg '+who;d.innerHTML=html;
+    msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
+  }
   /* Respuestas guardadas: si el agente en vivo no contesta, el demo sigue funcionando.
      Nunca inventa precios: los números son los mismos que muestra la web. */
   var GUION=[
@@ -635,6 +640,14 @@
     for(var i=0;i<GUION.length;i++){ if(GUION[i][0].test(t)) return GUION[i][1]; }
     return "Buena pregunta. Para no inventarte un n\u00famero, contame un poco m\u00e1s de tu negocio y te digo qu\u00e9 te conviene.";
   }
+  /* Si el agente en vivo no contesta (tunel caido, sin datos, timeout de 8s) el chat
+     NO queda mudo: avisa y ofrece WhatsApp. Rota, para no repetir la misma frase. */
+  var FALLBACK=[
+    'Se me cort\u00f3 la conexi\u00f3n un segundo. <a href="https://wa.me/5491138026712" target="_blank" rel="noopener">Escribime por WhatsApp</a> y te contesto yo al toque.',
+    'Uy, se me cort\u00f3 la se\u00f1al con el agente en vivo. Igual te sigo respondiendo ac\u00e1; si quer\u00e9s cerrarlo ya, <a href="https://wa.me/5491138026712" target="_blank" rel="noopener">habl\u00e1 por WhatsApp</a>.',
+    'Estoy sin conexi\u00f3n al agente. Te dejo la respuesta igual, y para hablar con una persona <a href="https://wa.me/5491138026712" target="_blank" rel="noopener">toc\u00e1 ac\u00e1</a>.'
+  ];
+  var fbIdx=0;
   function abrir(){
     box.classList.add('open');fab.setAttribute('aria-expanded','true');fab.style.display='none';
     if(wafab)wafab.style.display='none';
@@ -665,12 +678,12 @@
       .then(function(r){ clearTimeout(tmr); if(!r.ok) throw new Error('http '+r.status); return r.json(); })
     .then(function(j){
       var ty=msgs.querySelector('.typing'); if(ty) ty.remove();
-      add(j.reply||'(sin respuesta)','bot');
+      add(j.reply||guion(t),'bot');
     }).catch(function(){
       clearTimeout(tmr);
       demo=true;
       var ty=msgs.querySelector('.typing'); if(ty) ty.remove();
-      add('Demostraci\u00f3n sin conexi\u00f3n al agente en vivo: respondo con ejemplos guardados. Para el agente real, escribime por WhatsApp.','sys');
+      addHTML(FALLBACK[fbIdx++ % FALLBACK.length],'sys');
       responder(t);
     });
   }
