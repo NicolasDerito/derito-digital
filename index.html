@@ -614,8 +614,24 @@
   var sid=sessionStorage.getItem('derito_sid')||('v'+Math.random().toString(36).slice(2,10));
   sessionStorage.setItem('derito_sid',sid);
   var demo=false;
+  /* Los links del agente (wa.me, https, www) tienen que ser CLICKEABLES.
+     Se escapa SIEMPRE primero, asi que es seguro aunque el texto venga de afuera. */
+  function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function linkify(s){
+    return esc(s).replace(/(https?:\/\/[^\s<]+|www\.[^\s<]+|wa\.me\/[^\s<]+)/gi,function(u){
+      var trail='',m=u.match(/[.,;:!?]+$/);
+      if(m){trail=m[0];u=u.slice(0,-trail.length);}
+      var href=/^https?:\/\//i.test(u)?u:('https://'+u);
+      /* wa.me pelado: agrega mensaje para que el visitante caiga con contexto */
+      if(/^https:\/\/wa\.me\/\d+$/i.test(href)){
+        href+='?text='+encodeURIComponent('Hola, vengo de la web de Derito Digital y quiero cotizar.');
+      }
+      return '<a href="'+href+'" target="_blank" rel="noopener">'+u+'</a>'+trail;
+    });
+  }
   function add(txt,who){
-    var d=document.createElement('div');d.className='cmsg '+who;d.textContent=txt;
+    var d=document.createElement('div');d.className='cmsg '+who;
+    if(who==='bot'){ d.innerHTML=linkify(txt); } else { d.textContent=txt; }
     msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;
   }
   /* Igual que add, pero admite un link. El contenido es SIEMPRE propio, nunca del visitante. */
@@ -643,9 +659,9 @@
   /* Si el agente en vivo no contesta (tunel caido, sin datos, timeout de 8s) el chat
      NO queda mudo: avisa y ofrece WhatsApp. Rota, para no repetir la misma frase. */
   var FALLBACK=[
-    'Se me cort\u00f3 la conexi\u00f3n un segundo. <a href="https://wa.me/5491138026712" target="_blank" rel="noopener">Escribime por WhatsApp</a> y te contesto yo al toque.',
-    'Uy, se me cort\u00f3 la se\u00f1al con el agente en vivo. Igual te sigo respondiendo ac\u00e1; si quer\u00e9s cerrarlo ya, <a href="https://wa.me/5491138026712" target="_blank" rel="noopener">habl\u00e1 por WhatsApp</a>.',
-    'Estoy sin conexi\u00f3n al agente. Te dejo la respuesta igual, y para hablar con una persona <a href="https://wa.me/5491138026712" target="_blank" rel="noopener">toc\u00e1 ac\u00e1</a>.'
+    'Se me cort\u00f3 la conexi\u00f3n un segundo. <a href="https://wa.me/5491138026712?text=Hola%2C%20vengo%20de%20la%20web%20de%20Derito%20Digital%20y%20quiero%20cotizar." target="_blank" rel="noopener">Escribime por WhatsApp</a> y te contesto yo al toque.',
+    'Uy, se me cort\u00f3 la se\u00f1al con el agente en vivo. Igual te sigo respondiendo ac\u00e1; si quer\u00e9s cerrarlo ya, <a href="https://wa.me/5491138026712?text=Hola%2C%20vengo%20de%20la%20web%20de%20Derito%20Digital%20y%20quiero%20cotizar." target="_blank" rel="noopener">habl\u00e1 por WhatsApp</a>.',
+    'Estoy sin conexi\u00f3n al agente. Te dejo la respuesta igual, y para hablar con una persona <a href="https://wa.me/5491138026712?text=Hola%2C%20vengo%20de%20la%20web%20de%20Derito%20Digital%20y%20quiero%20cotizar." target="_blank" rel="noopener">toc\u00e1 ac\u00e1</a>.'
   ];
   var fbIdx=0;
   function abrir(){
