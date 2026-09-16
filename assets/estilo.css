@@ -669,3 +669,9 @@
   /* Link dentro del chat (aviso de respaldo -> WhatsApp) */
   .cmsg a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px;font-weight:700}
   .cmsg a:hover{color:var(--gold1)}
+  /* WhatsApp: boton verde con logo. Un link subrayado no se lee como "toca para escribir". */
+  .cmsg a.wa-link{display:inline-flex;align-items:center;gap:7px;background:#25D366;color:#fff!important;
+    font-weight:700;text-decoration:none;padding:8px 14px;border-radius:999px;margin-top:5px;
+    box-shadow:0 3px 10px rgba(37,211,102,.35);transition:background .2s,transform .2s}
+  .cmsg a.wa-link:hover{background:#1ebe5b;color:#fff!important;transform:translateY(-1px)}
+  .cmsg a.wa-link svg{width:16px;height:16px;fill:#fff;flex:0 0 auto}
