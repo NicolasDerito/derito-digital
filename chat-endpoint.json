@@ -1,0 +1,5 @@
+{
+  "url": "https://consciousness-servers-fans-hardware.trycloudflare.com/api/chat",
+  "updated": "2026-09-19T03:40:00Z",
+  "note": "Endpoint vivo del chat de la landing. Lo actualiza tools/start-demo-chat.sh en cada reparacion. La landing lo consulta SOLO si el endpoint que tiene falla."
+}

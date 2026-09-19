@@ -691,7 +691,7 @@
        JSON del repo (sin esperar al CDN de GitHub Pages) y reintenta una vez;
        3) recien si las dos fallan, cae al guion local. */
     var CHAT_EP='https://consciousness-servers-fans-hardware.trycloudflare.com/api/chat';
-    var EP_JSON='https://raw.githubusercontent.com/NicolasDerito/derito-digital/main/contenido/chat-endpoint.json';
+    var EP_JSON='https://raw.githubusercontent.com/NicolasDerito/derito-digital/main/chat-endpoint.json';
     function postChat(ep,msg){
       var ctl=(typeof AbortController!=='undefined')?new AbortController():null;
       var tmr=setTimeout(function(){ if(ctl){ try{ctl.abort();}catch(e){} } },8000);
