@@ -1,5 +1,5 @@
 {
-  "url": "https://consciousness-servers-fans-hardware.trycloudflare.com/api/chat",
-  "updated": "2026-09-19T03:40:00Z",
-  "note": "Endpoint vivo del chat de la landing. Lo actualiza tools/start-demo-chat.sh en cada reparacion. La landing lo consulta SOLO si el endpoint que tiene falla."
+  "url": "https://angular-aluminum-snore.ngrok-free.dev/api/chat",
+  "updated": "2026-09-19T03:53:07Z",
+  "note": "Endpoint FIJO del chat (dominio estatico de ngrok). Ya no cambia. La landing lo consulta solo si su endpoint falla."
 }
