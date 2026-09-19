@@ -686,19 +686,33 @@
     var t=inp.value.trim(); if(!t) return; inp.value='';
     add(t,'user'); add('Escribiendo\u2026','typing');
     if(demo){ setTimeout(function(){ responder(t); },620); return; }
-    /* Un solo endpoint. Se saco '/api/chat': GitHub Pages es estatico y devolvia 405,
-       o sea un round-trip perdido en cada mensaje. Si el tunel cambia de URL, se toca SOLO esta linea. */
+    /* Endpoint del chat, con AUTORREPARACION: si el tunel cambio de URL, el mensaje
+       no se pierde. 1) intenta el endpoint conocido; 2) si falla, pide la URL viva al
+       JSON del repo (sin esperar al CDN de GitHub Pages) y reintenta una vez;
+       3) recien si las dos fallan, cae al guion local. */
     var CHAT_EP='https://consciousness-servers-fans-hardware.trycloudflare.com/api/chat';
-    var ctl=(typeof AbortController!=='undefined')?new AbortController():null;
-    var tmr=setTimeout(function(){ if(ctl){ try{ctl.abort();}catch(e){} } },8000);
-    fetch(CHAT_EP,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({session:sid,message:t}),signal:ctl?ctl.signal:undefined})
-      .then(function(r){ clearTimeout(tmr); if(!r.ok) throw new Error('http '+r.status); return r.json(); })
+    var EP_JSON='https://raw.githubusercontent.com/NicolasDerito/derito-digital/main/contenido/chat-endpoint.json';
+    function postChat(ep,msg){
+      var ctl=(typeof AbortController!=='undefined')?new AbortController():null;
+      var tmr=setTimeout(function(){ if(ctl){ try{ctl.abort();}catch(e){} } },8000);
+      return fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({session:sid,message:msg}),signal:ctl?ctl.signal:undefined})
+        .then(function(r){ clearTimeout(tmr); if(!r.ok) throw new Error('http '+r.status); return r.json(); });
+    }
+    postChat(CHAT_EP,t)
+      .catch(function(){
+        return fetch(EP_JSON+'?t='+Date.now(),{cache:'no-store'})
+          .then(function(r){ return r.json(); })
+          .then(function(j){
+            if(!j||!j.url||j.url===CHAT_EP) throw new Error('sin url nueva');
+            CHAT_EP=j.url;
+            return postChat(CHAT_EP,t);
+          });
+      })
     .then(function(j){
       var ty=msgs.querySelector('.typing'); if(ty) ty.remove();
       add(j.reply||guion(t),'bot');
     }).catch(function(){
-      clearTimeout(tmr);
       demo=true;
       var ty=msgs.querySelector('.typing'); if(ty) ty.remove();
       addHTML(FALLBACK[fbIdx++ % FALLBACK.length],'sys');
