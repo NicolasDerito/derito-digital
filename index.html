@@ -690,7 +690,7 @@
        no se pierde. 1) intenta el endpoint conocido; 2) si falla, pide la URL viva al
        JSON del repo (sin esperar al CDN de GitHub Pages) y reintenta una vez;
        3) recien si las dos fallan, cae al guion local. */
-    var CHAT_EP='https://angular-aluminum-snore.ngrok-free.dev/api/chat';
+    var CHAT_EP='https://chat.deritodigital.com.ar/api/chat';
     var EP_JSON='https://raw.githubusercontent.com/NicolasDerito/derito-digital/main/chat-endpoint.json';
     function postChat(ep,msg){
       var ctl=(typeof AbortController!=='undefined')?new AbortController():null;

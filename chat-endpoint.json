@@ -1,5 +1,5 @@
 {
-  "url": "https://angular-aluminum-snore.ngrok-free.dev/api/chat",
-  "updated": "2026-09-19T03:53:07Z",
-  "note": "Endpoint FIJO del chat (dominio estatico de ngrok). Ya no cambia. La landing lo consulta solo si su endpoint falla."
+  "url": "https://chat.deritodigital.com.ar/api/chat",
+  "updated": "2026-09-23T14:20:00Z",
+  "note": "Endpoint FIJO del chat en Cloudflare Workers (24/7, ya NO depende de la Mac). La landing lo consulta solo si su endpoint falla."
 }
