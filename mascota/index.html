@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>El carpincho que te atiende 24/7 - Derito Digital</title>
+<style>
+  :root{--crema:#F7F2EA;--terracota:#C4643F;--tinta:#3A2A22;}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;color:var(--tinta);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(circle at 50% 32%, #FFFBF5 0%, var(--crema) 55%, #EBE0D2 100%)}
+  .marca{position:fixed;top:0;left:0;right:0;z-index:6;padding:18px 22px;display:flex;align-items:center;gap:9px;
+    font-weight:800;letter-spacing:1.6px;font-size:12px;opacity:.7}
+  .punto{width:9px;height:9px;border-radius:50%;background:var(--terracota);box-shadow:0 0 0 4px rgba(196,100,63,.15)}
+  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1100px;z-index:2}
+  .cuerpo{transform-style:preserve-3d;transition:transform .16s ease-out;animation:flotar 4.8s ease-in-out infinite}
+  @keyframes flotar{0%,100%{translate:0 0}50%{translate:0 -16px}}
+  svg{display:block;width:min(78vw,360px);height:auto;filter:drop-shadow(0 26px 34px rgba(120,70,50,.26))}
+  #orejas{transform-box:fill-box;transform-origin:center bottom;animation:orejas 3.8s ease-in-out infinite}
+  @keyframes orejas{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+  .ojo{transform-box:fill-box;transform-origin:center;animation:parpadeo 5.4s infinite}
+  @keyframes parpadeo{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.08)}}
+  .pupila{transition:transform .06s linear}
+  .antena{transform-box:fill-box;transform-origin:bottom center;animation:vaiven 3.2s ease-in-out infinite}
+  @keyframes vaiven{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+  .sombra{position:fixed;left:50%;bottom:17%;width:250px;height:32px;margin-left:-125px;border-radius:50%;z-index:1;
+    background:radial-gradient(ellipse at center, rgba(120,80,60,.32), rgba(120,80,60,0) 70%);filter:blur(3px);animation:sombraViva 4.8s ease-in-out infinite}
+  @keyframes sombraViva{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(.86);opacity:.6}}
+  .globo{position:fixed;z-index:6;left:50%;top:9%;transform:translateX(-50%);max-width:min(88vw,430px);
+    background:#fff;border-radius:18px;padding:14px 18px;font-size:15px;line-height:1.35;text-align:center;
+    box-shadow:0 10px 30px rgba(58,42,34,.13);transition:opacity .3s}
+  .globo:after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-9px;width:18px;height:18px;background:#fff;transform:rotate(45deg);border-radius:3px}
+  .globo.oculto{opacity:0;pointer-events:none}
+  .pie{position:fixed;z-index:6;left:0;right:0;bottom:14px;text-align:center;font-size:12.5px;opacity:.62}
+  .panel{position:fixed;z-index:9;left:50%;bottom:0;transform:translateX(-50%);width:min(94vw,470px);background:#fff;
+    border-radius:20px 20px 0 0;box-shadow:0 -14px 40px rgba(58,42,34,.2);display:flex;flex-direction:column;max-height:60vh;transition:transform .35s ease}
+  .panel.oculto{transform:translateX(-50%) translateY(112%)}
+  .cab{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #F0E7DC;font-size:14px}
+  .cab .est{display:flex;align-items:center;gap:8px}
+  .cab .dot{width:8px;height:8px;border-radius:50%;background:#38B000}
+  .cab button{border:0;background:#F4EDE4;width:28px;height:28px;border-radius:9px;font-size:15px;cursor:pointer;color:#6B5548}
+  .msgs{padding:14px 16px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:9px;font-size:14.5px;line-height:1.4}
+  .m{max-width:82%;padding:9px 13px;border-radius:14px;white-space:pre-wrap}
+  .m.ag{background:#F6EFE6;border-bottom-left-radius:5px;align-self:flex-start}
+  .m.yo{background:var(--terracota);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+  form{display:flex;gap:9px;padding:12px 14px;border-top:1px solid #F0E7DC}
+  form input{flex:1;border:1px solid #E6DACB;border-radius:12px;padding:12px 13px;font-size:15px;outline:none;background:#FCF9F5}
+  form button{border:0;background:var(--terracota);color:#fff;border-radius:12px;padding:0 18px;font-size:15px;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="marca"><span class="punto"></span>DERITO DIGITAL</div>
+<div id="globo" class="globo">Hola! Soy el agente de Derito Digital. Tocate y te contesto.</div>
+<div class="sombra"></div>
+<div class="escena">
+  <div id="cuerpo" class="cuerpo">
+    <svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="piel" cx="34%" cy="26%">
+          <stop offset="0%" stop-color="#E9A97C"/>
+          <stop offset="48%" stop-color="#C4643F"/>
+          <stop offset="100%" stop-color="#8B4223"/>
+        </radialGradient>
+        <radialGradient id="hocico" cx="38%" cy="28%">
+          <stop offset="0%" stop-color="#FCE6D4"/>
+          <stop offset="100%" stop-color="#DFA982"/>
+        </radialGradient>
+        <radialGradient id="luz" cx="34%" cy="32%">
+          <stop offset="0%" stop-color="#FFEBD6"/>
+          <stop offset="70%" stop-color="#F0A369"/>
+          <stop offset="100%" stop-color="#D07F4A"/>
+        </radialGradient>
+      </defs>
+
+      <g class="antena">
+        <rect x="147" y="26" width="6" height="42" rx="3" fill="#A9532F"/>
+        <circle cx="150" cy="22" r="11" fill="url(#luz)"/>
+      </g>
+
+      <ellipse cx="150" cy="272" rx="88" ry="60" fill="url(#piel)"/>
+      <ellipse cx="106" cy="320" rx="24" ry="15" fill="#8B4223"/>
+      <ellipse cx="194" cy="320" rx="24" ry="15" fill="#8B4223"/>
+
+      <g id="orejas">
+        <ellipse cx="92" cy="112" rx="25" ry="28" fill="#A9532F"/>
+        <ellipse cx="208" cy="112" rx="25" ry="28" fill="#A9532F"/>
+        <ellipse cx="92" cy="114" rx="14" ry="16" fill="#7E3A1E"/>
+        <ellipse cx="208" cy="114" rx="14" ry="16" fill="#7E3A1E"/>
+      </g>
+
+      <ellipse cx="150" cy="172" rx="94" ry="86" fill="url(#piel)"/>
+
+      <ellipse cx="150" cy="222" rx="62" ry="50" fill="url(#hocico)"/>
+      <ellipse cx="128" cy="200" rx="7" ry="9" fill="#5B3320"/>
+      <ellipse cx="172" cy="200" rx="7" ry="9" fill="#5B3320"/>
+      <path d="M150 232 q-15 13 -30 3" stroke="#5B3320" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M150 232 q15 13 30 3" stroke="#5B3320" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+      <g class="ojo">
+        <circle cx="110" cy="158" r="21" fill="#FFFFFF"/>
+        <g class="pupila"><circle cx="110" cy="158" r="11.5" fill="#2B1D16"/><circle cx="106" cy="154" r="4" fill="#FFFFFF"/></g>
+      </g>
+      <g class="ojo">
+        <circle cx="190" cy="158" r="21" fill="#FFFFFF"/>
+        <g class="pupila"><circle cx="190" cy="158" r="11.5" fill="#2B1D16"/><circle cx="186" cy="154" r="4" fill="#FFFFFF"/></g>
+      </g>
+
+      <ellipse cx="62" cy="212" rx="15" ry="10" fill="#E08A5F" opacity=".5"/>
+      <ellipse cx="238" cy="212" rx="15" ry="10" fill="#E08A5F" opacity=".5"/>
+    </svg>
+  </div>
+</div>
+<div class="pie">El carpincho ES el agente - tocalo para hablarle</div>
+<div id="panel" class="panel oculto">
+  <div class="cab"><span class="est"><span class="dot"></span><b>Agente Derito</b></span><button id="cerrar" type="button">x</button></div>
+  <div id="msgs" class="msgs"><div class="m ag">Hola! Contame de tu negocio y te digo que te conviene.</div></div>
+  <form id="form"><input id="txt" placeholder="Escribi tu consulta..." autocomplete="off"/><button type="submit">Enviar</button></form>
+</div>
+<script>
+var cuerpo = document.getElementById('cuerpo');
+var panel = document.getElementById('panel');
+var globo = document.getElementById('globo');
+var msgs = document.getElementById('msgs');
+var form = document.getElementById('form');
+var txt = document.getElementById('txt');
+var pup = document.querySelectorAll('.pupila');
+var sid = 'demo-' + Math.random().toString(36).slice(2, 9);
+var abierto = false;
+
+document.addEventListener('pointermove', function(e){
+  var nx = (e.clientX / window.innerWidth) * 2 - 1;
+  var ny = (e.clientY / window.innerHeight) * 2 - 1;
+  cuerpo.style.transform = 'rotateX(' + (-ny * 11).toFixed(1) + 'deg) rotateY(' + (nx * 15).toFixed(1) + 'deg) translateX(' + (nx * 9).toFixed(1) + 'px)';
+  for (var i = 0; i < pup.length; i++) {
+    pup[i].setAttribute('transform', 'translate(' + (nx * 5).toFixed(1) + ',' + (ny * 4).toFixed(1) + ')');
+  }
+});
+document.addEventListener('pointerdown', function(){ alternar(); });
+function alternar(){
+  abierto = !abierto;
+  panel.classList.toggle('oculto', !abierto);
+  globo.classList.toggle('oculto', abierto);
+  if (abierto) setTimeout(function(){ txt.focus(); }, 350);
+}
+document.getElementById('cerrar').addEventListener('click', function(e){ e.stopPropagation(); if (abierto) alternar(); });
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  var v = txt.value.trim(); if (!v) return;
+  txt.value = '';
+  agregar(v, 'yo');
+  var ult = agregar('...', 'ag');
+  fetch('https://chat.deritodigital.com.ar/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({session: sid, message: v})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){ ult.textContent = (j && j.reply) ? j.reply : '(sin respuesta)'; msgs.scrollTop = msgs.scrollHeight; })
+    .catch(function(){ ult.textContent = '(no pude conectar con el agente)'; });
+});
+function agregar(t, q){
+  var d = document.createElement('div');
+  d.className = 'm ' + q; d.textContent = t;
+  msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+</script>
+</body>
+</html>
