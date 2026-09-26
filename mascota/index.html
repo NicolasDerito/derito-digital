@@ -5,44 +5,43 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>El carpincho que te atiende 24/7 - Derito Digital</title>
 <style>
-  :root{--fondo:#F6F3EC;--terracota:#C4643F;--tinta:#3A2A22;}
+  :root{--terracota:#C4643F;--tinta:#3A2A22;}
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;overflow:hidden;color:var(--tinta);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:radial-gradient(circle at 50% 34%, #FFFCF7 0%, var(--fondo) 58%, #EBE4D7 100%)}
-  .marca{position:fixed;top:0;left:0;right:0;z-index:6;padding:18px 22px;display:flex;align-items:center;gap:9px;
-    font-weight:800;letter-spacing:1.6px;font-size:12px;opacity:.62}
+    background:#F6F4EE;
+    background-image:radial-gradient(circle at 50% 38%, #FFFDF9 0%, #F8F5EF 46%, #EDE7DB 100%)}
+  .marca{position:fixed;top:0;left:0;right:0;z-index:6;padding:16px 20px;display:flex;align-items:center;gap:9px;
+    font-weight:800;letter-spacing:1.6px;font-size:12px;opacity:.6}
   .punto{width:9px;height:9px;border-radius:50%;background:var(--terracota);box-shadow:0 0 0 4px rgba(196,100,63,.15)}
-  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1200px;z-index:2}
+  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1200px;z-index:2;padding:76px 0 78px}
   .cuerpo{position:relative;transform-style:preserve-3d;transition:transform .15s ease-out;
-    animation:flotar 4.6s ease-in-out infinite;will-change:transform}
-  @keyframes flotar{0%,100%{translate:0 0}50%{translate:0 -18px}}
-  img.mascota{display:block;width:min(76vw,400px);height:auto;user-select:none;-webkit-user-drag:none;pointer-events:none;
-    -webkit-mask-image:radial-gradient(closest-side,#000 74%,rgba(0,0,0,.55) 88%,rgba(0,0,0,0) 100%);
-    mask-image:radial-gradient(closest-side,#000 74%,rgba(0,0,0,.55) 88%,rgba(0,0,0,0) 100%);
-    filter:drop-shadow(0 30px 40px rgba(120,70,50,.22))}
-  .aura{position:absolute;left:50%;top:48%;width:118%;height:118%;transform:translate(-50%,-50%);border-radius:50%;
-    background:radial-gradient(circle,rgba(255,214,178,.55) 0%,rgba(255,214,178,0) 66%);z-index:-1;
-    animation:aura 4.6s ease-in-out infinite}
-  @keyframes aura{0%,100%{opacity:.5;scale:1}50%{opacity:.85;scale:1.06}}
-  .respira{animation:respira 5.2s ease-in-out infinite}
-  @keyframes respira{0%,100%{scale:1}50%{scale:1.014}}
-  .boing{animation:boing .52s cubic-bezier(.24,1.5,.42,1)}
-  @keyframes boing{0%{scale:1 1}28%{scale:1.09 .9}58%{scale:.95 1.06}100%{scale:1 1}}
-  .mira{animation:mira 1.5s ease-in-out}
-  @keyframes mira{0%,100%{rotate:0deg}30%{rotate:-3.2deg}70%{rotate:3.2deg}}
-  .sombra{position:fixed;left:50%;bottom:15%;width:min(64vw,330px);height:34px;margin-left:calc(min(64vw,330px)/-2);
-    border-radius:50%;z-index:1;background:radial-gradient(ellipse at center,rgba(120,80,60,.30),rgba(120,80,60,0) 70%);
-    filter:blur(4px);animation:sombraViva 4.6s ease-in-out infinite}
-  @keyframes sombraViva{0%,100%{scale:1;opacity:.9}50%{scale:.85;opacity:.6}}
-  .globo{position:fixed;z-index:6;left:50%;top:8%;transform:translateX(-50%);max-width:min(88vw,440px);
-    background:#fff;border-radius:18px;padding:14px 18px;font-size:15px;line-height:1.35;text-align:center;
+    animation:flotar 4.8s ease-in-out infinite;will-change:transform}
+  @keyframes flotar{0%,100%{translate:0 0}50%{translate:0 -16px}}
+  img.mascota{display:block;width:min(80vw,430px);height:auto;user-select:none;-webkit-user-drag:none;pointer-events:none;
+    filter:drop-shadow(0 24px 30px rgba(120,70,50,.20))}
+  .aura{position:absolute;left:50%;top:50%;width:132%;height:132%;transform:translate(-50%,-50%);border-radius:50%;
+    background:radial-gradient(circle,rgba(255,209,168,.50) 0%,rgba(255,209,168,0) 62%);z-index:-1;
+    animation:aura 4.8s ease-in-out infinite}
+  @keyframes aura{0%,100%{opacity:.45;scale:1}50%{opacity:.8;scale:1.05}}
+  .respira{animation:respira 5.4s ease-in-out infinite}
+  @keyframes respira{0%,100%{scale:1}50%{scale:1.012}}
+  .boing{animation:boing .54s cubic-bezier(.24,1.5,.42,1)}
+  @keyframes boing{0%{scale:1 1}28%{scale:1.08 .92}58%{scale:.96 1.05}100%{scale:1 1}}
+  .mira{animation:mira 1.6s ease-in-out}
+  @keyframes mira{0%,100%{rotate:0deg}30%{rotate:-3deg}70%{rotate:3deg}}
+  .sombra{position:fixed;left:50%;bottom:13%;width:min(60vw,300px);height:30px;margin-left:calc(min(60vw,300px)/-2);
+    border-radius:50%;z-index:1;background:radial-gradient(ellipse at center,rgba(120,80,60,.28),rgba(120,80,60,0) 70%);
+    filter:blur(4px);animation:sombraViva 4.8s ease-in-out infinite}
+  @keyframes sombraViva{0%,100%{scale:1;opacity:.9}50%{scale:.86;opacity:.62}}
+  .globo{position:fixed;z-index:6;left:50%;top:7%;transform:translateX(-50%);max-width:min(90vw,440px);
+    background:#fff;border-radius:18px;padding:13px 17px;font-size:14.5px;line-height:1.35;text-align:center;
     box-shadow:0 10px 30px rgba(58,42,34,.13);transition:opacity .3s}
-  .globo:after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-9px;width:18px;height:18px;background:#fff;transform:rotate(45deg);border-radius:3px}
+  .globo:after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-8px;width:17px;height:17px;background:#fff;transform:rotate(45deg);border-radius:3px}
   .globo.oculto{opacity:0;pointer-events:none}
-  .pie{position:fixed;z-index:6;left:0;right:0;bottom:14px;text-align:center;font-size:12.5px;opacity:.6}
+  .pie{position:fixed;z-index:6;left:0;right:0;bottom:12px;text-align:center;font-size:12.5px;opacity:.58}
   .panel{position:fixed;z-index:9;left:50%;bottom:0;transform:translateX(-50%);width:min(94vw,470px);background:#fff;
-    border-radius:20px 20px 0 0;box-shadow:0 -14px 40px rgba(58,42,34,.2);display:flex;flex-direction:column;max-height:60vh;transition:transform .35s ease}
+    border-radius:20px 20px 0 0;box-shadow:0 -14px 40px rgba(58,42,34,.2);display:flex;flex-direction:column;max-height:62vh;transition:transform .35s ease}
   .panel.oculto{transform:translateX(-50%) translateY(112%)}
   .cab{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #F0E7DC;font-size:14px}
   .cab .est{display:flex;align-items:center;gap:8px}
@@ -53,7 +52,7 @@
   .m.ag{background:#F6EFE6;border-bottom-left-radius:5px;align-self:flex-start}
   .m.yo{background:var(--terracota);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
   form{display:flex;gap:9px;padding:12px 14px;border-top:1px solid #F0E7DC}
-  form input{flex:1;border:1px solid #E6DACB;border-radius:12px;padding:12px 13px;font-size:15px;outline:none;background:#FCF9F5}
+  form input{flex:1;border:1px solid #E6DACB;border-radius:12px;padding:12px 13px;font-size:16px;outline:none;background:#FCF9F5}
   form button{border:0;background:var(--terracota);color:#fff;border-radius:12px;padding:0 18px;font-size:15px;font-weight:600;cursor:pointer}
 </style>
 </head>
@@ -82,13 +81,12 @@ var form = document.getElementById('form');
 var txt = document.getElementById('txt');
 var sid = 'web-' + Math.random().toString(36).slice(2, 9);
 var abierto = false;
-
 function mover(e){
   var p = e.touches ? e.touches[0] : e;
   if (!p) return;
   var nx = (p.clientX / window.innerWidth) * 2 - 1;
   var ny = (p.clientY / window.innerHeight) * 2 - 1;
-  cuerpo.style.transform = 'rotateX(' + (-ny * 10).toFixed(1) + 'deg) rotateY(' + (nx * 16).toFixed(1) + 'deg) translateX(' + (nx * 13).toFixed(1) + 'px) translateY(' + (ny * 7).toFixed(1) + 'px)';
+  cuerpo.style.transform = 'rotateX(' + (-ny * 10).toFixed(1) + 'deg) rotateY(' + (nx * 16).toFixed(1) + 'deg) translateX(' + (nx * 13).toFixed(1) + 'px) translateY(' + (ny * 6).toFixed(1) + 'px)';
 }
 document.addEventListener('pointermove', mover);
 document.addEventListener('touchmove', mover, { passive: true });
