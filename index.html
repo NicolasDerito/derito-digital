@@ -574,14 +574,62 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<button class="chat-fab" id="chatFab" aria-label="Hablá con el agente demo" aria-expanded="false">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.2 3.6c-.6.5-1.5.1-1.5-.7V5.5z"/>
-    <path class="spark" d="M12 6.2l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9.9-2z"/>
+<button class="mascota-fab" id="chatFab" aria-label="Hablá con el agente: el carpincho" aria-expanded="false">
+  <span class="masc-aura" aria-hidden="true"></span>
+  <svg viewBox="0 0 300 350" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="mascPiel" cx="34%" cy="26%">
+        <stop offset="0%" stop-color="#E9A97C"/><stop offset="48%" stop-color="#C4643F"/><stop offset="100%" stop-color="#8B4223"/>
+      </radialGradient>
+      <radialGradient id="mascHocico" cx="38%" cy="28%">
+        <stop offset="0%" stop-color="#FCE6D4"/><stop offset="100%" stop-color="#DFA982"/>
+      </radialGradient>
+      <radialGradient id="mascLuz" cx="34%" cy="32%">
+        <stop offset="0%" stop-color="#FFEBD6"/><stop offset="70%" stop-color="#F0A369"/><stop offset="100%" stop-color="#D07F4A"/>
+      </radialGradient>
+    </defs>
+    <g class="masc-antena">
+      <rect x="147" y="26" width="6" height="42" rx="3" fill="#A9532F"/>
+      <circle cx="150" cy="22" r="11" fill="url(#mascLuz)"/>
+    </g>
+    <ellipse cx="150" cy="272" rx="88" ry="60" fill="url(#mascPiel)"/>
+    <ellipse cx="106" cy="320" rx="24" ry="15" fill="#8B4223"/>
+    <ellipse cx="194" cy="320" rx="24" ry="15" fill="#8B4223"/>
+    <g class="masc-orejas">
+      <ellipse cx="92" cy="112" rx="25" ry="28" fill="#A9532F"/>
+      <ellipse cx="208" cy="112" rx="25" ry="28" fill="#A9532F"/>
+      <ellipse cx="92" cy="114" rx="14" ry="16" fill="#7E3A1E"/>
+      <ellipse cx="208" cy="114" rx="14" ry="16" fill="#7E3A1E"/>
+    </g>
+    <ellipse cx="150" cy="172" rx="94" ry="86" fill="url(#mascPiel)"/>
+    <ellipse cx="150" cy="222" rx="62" ry="50" fill="url(#mascHocico)"/>
+    <ellipse cx="128" cy="200" rx="7" ry="9" fill="#5B3320"/>
+    <ellipse cx="172" cy="200" rx="7" ry="9" fill="#5B3320"/>
+    <path d="M150 232 q-15 13 -30 3" stroke="#5B3320" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <path d="M150 232 q15 13 30 3" stroke="#5B3320" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <g class="masc-ojo">
+      <circle cx="110" cy="158" r="21" fill="#FFFFFF"/>
+      <g class="masc-pupila"><circle cx="110" cy="158" r="11.5" fill="#2B1D16"/><circle cx="106" cy="154" r="4" fill="#FFFFFF"/></g>
+    </g>
+    <g class="masc-ojo">
+      <circle cx="190" cy="158" r="21" fill="#FFFFFF"/>
+      <g class="masc-pupila"><circle cx="190" cy="158" r="11.5" fill="#2B1D16"/><circle cx="186" cy="154" r="4" fill="#FFFFFF"/></g>
+    </g>
+    <ellipse cx="62" cy="212" rx="15" ry="10" fill="#E08A5F" opacity=".5"/>
+    <ellipse cx="238" cy="212" rx="15" ry="10" fill="#E08A5F" opacity=".5"/>
   </svg>
-  <span class="fab-txt">Hablá con el agente</span>
+  <span class="masc-invita">Hablá conmigo</span>
 </button>
-<div class="fab-ring" aria-hidden="true"></div>
+<script>
+(function(){
+  var m=document.getElementById('chatFab'); if(!m) return;
+  var pup=m.querySelectorAll('.masc-pupila');
+  window.addEventListener('pointermove',function(e){
+    var nx=(e.clientX/window.innerWidth)*2-1, ny=(e.clientY/window.innerHeight)*2-1;
+    for(var i=0;i<pup.length;i++) pup[i].setAttribute('transform','translate('+(nx*5).toFixed(1)+','+(ny*4).toFixed(1)+')');
+  },{passive:true});
+})();
+</script>
 
 <div class="chat-box" id="chatBox" role="dialog" aria-label="Chat con el agente de Derito Digital">
   <div class="cb-head">
