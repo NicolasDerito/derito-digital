@@ -5,41 +5,34 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>El carpincho que te atiende 24/7 - Derito Digital</title>
 <style>
-  :root{--terracota:#C4643F;--tinta:#3A2A22;}
+  :root{--crema:#F5F3ED;--terracota:#C4643F;--tinta:#3A2A22;}
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%;overflow:hidden;color:var(--tinta);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:#F6F4EE;
-    background-image:radial-gradient(circle at 50% 38%, #FFFDF9 0%, #F8F5EF 46%, #EDE7DB 100%)}
+  html,body{margin:0;height:100%;overflow:hidden;color:var(--tinta);background:var(--crema);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
   .marca{position:fixed;top:0;left:0;right:0;z-index:6;padding:16px 20px;display:flex;align-items:center;gap:9px;
-    font-weight:800;letter-spacing:1.6px;font-size:12px;opacity:.6}
+    font-weight:800;letter-spacing:1.6px;font-size:12px;opacity:.55}
   .punto{width:9px;height:9px;border-radius:50%;background:var(--terracota);box-shadow:0 0 0 4px rgba(196,100,63,.15)}
-  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1200px;z-index:2;padding:76px 0 78px}
+  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1200px;z-index:2;padding:78px 0 80px}
   .cuerpo{position:relative;transform-style:preserve-3d;transition:transform .15s ease-out;
     animation:flotar 4.8s ease-in-out infinite;will-change:transform}
   @keyframes flotar{0%,100%{translate:0 0}50%{translate:0 -16px}}
-  img.mascota{display:block;width:min(80vw,430px);height:auto;user-select:none;-webkit-user-drag:none;pointer-events:none;
-    filter:drop-shadow(0 24px 30px rgba(120,70,50,.20))}
-  .aura{position:absolute;left:50%;top:50%;width:132%;height:132%;transform:translate(-50%,-50%);border-radius:50%;
-    background:radial-gradient(circle,rgba(255,209,168,.50) 0%,rgba(255,209,168,0) 62%);z-index:-1;
-    animation:aura 4.8s ease-in-out infinite}
-  @keyframes aura{0%,100%{opacity:.45;scale:1}50%{opacity:.8;scale:1.05}}
+  img.mascota{display:block;width:min(78vw,405px);height:auto;user-select:none;-webkit-user-drag:none;pointer-events:none}
   .respira{animation:respira 5.4s ease-in-out infinite}
   @keyframes respira{0%,100%{scale:1}50%{scale:1.012}}
   .boing{animation:boing .54s cubic-bezier(.24,1.5,.42,1)}
   @keyframes boing{0%{scale:1 1}28%{scale:1.08 .92}58%{scale:.96 1.05}100%{scale:1 1}}
   .mira{animation:mira 1.6s ease-in-out}
   @keyframes mira{0%,100%{rotate:0deg}30%{rotate:-3deg}70%{rotate:3deg}}
-  .sombra{position:fixed;left:50%;bottom:13%;width:min(60vw,300px);height:30px;margin-left:calc(min(60vw,300px)/-2);
-    border-radius:50%;z-index:1;background:radial-gradient(ellipse at center,rgba(120,80,60,.28),rgba(120,80,60,0) 70%);
+  .sombra{position:fixed;left:50%;bottom:12%;width:min(56vw,280px);height:26px;margin-left:calc(min(56vw,280px)/-2);
+    border-radius:50%;z-index:1;background:radial-gradient(ellipse at center,rgba(120,80,60,.30),rgba(120,80,60,0) 70%);
     filter:blur(4px);animation:sombraViva 4.8s ease-in-out infinite}
-  @keyframes sombraViva{0%,100%{scale:1;opacity:.9}50%{scale:.86;opacity:.62}}
+  @keyframes sombraViva{0%,100%{scale:1;opacity:.9}50%{scale:.86;opacity:.6}}
   .globo{position:fixed;z-index:6;left:50%;top:7%;transform:translateX(-50%);max-width:min(90vw,440px);
     background:#fff;border-radius:18px;padding:13px 17px;font-size:14.5px;line-height:1.35;text-align:center;
     box-shadow:0 10px 30px rgba(58,42,34,.13);transition:opacity .3s}
   .globo:after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-8px;width:17px;height:17px;background:#fff;transform:rotate(45deg);border-radius:3px}
   .globo.oculto{opacity:0;pointer-events:none}
-  .pie{position:fixed;z-index:6;left:0;right:0;bottom:12px;text-align:center;font-size:12.5px;opacity:.58}
+  .pie{position:fixed;z-index:6;left:0;right:0;bottom:12px;text-align:center;font-size:12.5px;opacity:.55}
   .panel{position:fixed;z-index:9;left:50%;bottom:0;transform:translateX(-50%);width:min(94vw,470px);background:#fff;
     border-radius:20px 20px 0 0;box-shadow:0 -14px 40px rgba(58,42,34,.2);display:flex;flex-direction:column;max-height:62vh;transition:transform .35s ease}
   .panel.oculto{transform:translateX(-50%) translateY(112%)}
@@ -62,8 +55,7 @@
 <div class="sombra"></div>
 <div class="escena">
   <div id="cuerpo" class="cuerpo respira">
-    <span class="aura"></span>
-    <img class="mascota" src="capi.png?v=2" alt="Carpincho agente de Derito Digital" draggable="false"/>
+    <img class="mascota" src="capi.png?v=3" alt="Carpincho agente de Derito Digital" draggable="false"/>
   </div>
 </div>
 <div class="pie">El carpincho ES el agente - tocalo para hablarle</div>
@@ -86,7 +78,7 @@ function mover(e){
   if (!p) return;
   var nx = (p.clientX / window.innerWidth) * 2 - 1;
   var ny = (p.clientY / window.innerHeight) * 2 - 1;
-  cuerpo.style.transform = 'rotateX(' + (-ny * 10).toFixed(1) + 'deg) rotateY(' + (nx * 16).toFixed(1) + 'deg) translateX(' + (nx * 13).toFixed(1) + 'px) translateY(' + (ny * 6).toFixed(1) + 'px)';
+  cuerpo.style.transform = 'rotateX(' + (-ny * 10).toFixed(1) + 'deg) rotateY(' + (nx * 15).toFixed(1) + 'deg) translateX(' + (nx * 12).toFixed(1) + 'px) translateY(' + (ny * 6).toFixed(1) + 'px)';
 }
 document.addEventListener('pointermove', mover);
 document.addEventListener('touchmove', mover, { passive: true });
