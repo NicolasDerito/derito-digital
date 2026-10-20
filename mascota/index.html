@@ -7,13 +7,13 @@
 <style>
   :root{--crema:#F7F2EA;--terracota:#C4643F;--tinta:#3A2A22;}
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%;overflow:hidden;color:var(--tinta);
+  html,body{margin:0;min-height:100%;overflow-x:hidden;color:var(--tinta);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:radial-gradient(circle at 50% 32%, #FFFBF5 0%, var(--crema) 55%, #EBE0D2 100%)}
   .marca{position:fixed;top:0;left:0;right:0;z-index:6;padding:18px 22px;display:flex;align-items:center;gap:9px;
     font-weight:800;letter-spacing:1.6px;font-size:12px;opacity:.7}
   .punto{width:9px;height:9px;border-radius:50%;background:var(--terracota);box-shadow:0 0 0 4px rgba(196,100,63,.15)}
-  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1100px;z-index:2}
+  .escena{position:fixed;inset:0;display:grid;place-items:center;perspective:1100px;z-index:2;pointer-events:none}
   .cuerpo{transform-style:preserve-3d;transition:transform .16s ease-out;animation:flotar 4.8s ease-in-out infinite}
   @keyframes flotar{0%,100%{translate:0 0}50%{translate:0 -16px}}
   svg{display:block;width:min(78vw,360px);height:auto;filter:drop-shadow(0 26px 34px rgba(120,70,50,.26))}
@@ -32,10 +32,15 @@
     box-shadow:0 10px 30px rgba(58,42,34,.13);transition:opacity .3s}
   .globo:after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-9px;width:18px;height:18px;background:#fff;transform:rotate(45deg);border-radius:3px}
   .globo.oculto{opacity:0;pointer-events:none}
-  .pie{position:fixed;z-index:6;left:0;right:0;bottom:14px;text-align:center;font-size:12.5px;opacity:.62}
+  .pie{position:fixed;z-index:6;left:0;right:0;bottom:14px;text-align:center;font-size:12.5px;opacity:.82}
+  .abrir{position:fixed;z-index:7;left:50%;bottom:42px;transform:translateX(-50%);border:0;border-radius:12px;padding:12px 18px;background:var(--terracota);color:#fff;font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer}
+  button:focus-visible,input:focus-visible{outline:3px solid #2b1d16;outline-offset:3px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  @media (max-height:520px){.globo{top:58px}.panel{max-height:88vh}.pie{display:none}.abrir{bottom:12px}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}.cuerpo{transform:none!important}}
   .panel{position:fixed;z-index:9;left:50%;bottom:0;transform:translateX(-50%);width:min(94vw,470px);background:#fff;
     border-radius:20px 20px 0 0;box-shadow:0 -14px 40px rgba(58,42,34,.2);display:flex;flex-direction:column;max-height:60vh;transition:transform .35s ease}
-  .panel.oculto{transform:translateX(-50%) translateY(112%)}
+  .panel.oculto{transform:translateX(-50%) translateY(112%);visibility:hidden}
   .cab{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #F0E7DC;font-size:14px}
   .cab .est{display:flex;align-items:center;gap:8px}
   .cab .dot{width:8px;height:8px;border-radius:50%;background:#38B000}
@@ -51,7 +56,7 @@
 </head>
 <body>
 <div class="marca"><span class="punto"></span>DERITO DIGITAL</div>
-<div id="globo" class="globo">Hola! Soy el agente de Derito Digital. Tocate y te contesto.</div>
+<div id="globo" class="globo">Hola! Soy el agente de Derito Digital. Tocá el botón para hablar conmigo.</div>
 <div class="sombra"></div>
 <div class="escena">
   <div id="cuerpo" class="cuerpo">
@@ -111,11 +116,12 @@
     </svg>
   </div>
 </div>
-<div class="pie">El carpincho ES el agente - tocalo para hablarle</div>
-<div id="panel" class="panel oculto">
-  <div class="cab"><span class="est"><span class="dot"></span><b>Agente Derito</b></span><button id="cerrar" type="button">x</button></div>
-  <div id="msgs" class="msgs"><div class="m ag">Hola! Contame de tu negocio y te digo que te conviene.</div></div>
-  <form id="form"><input id="txt" placeholder="Escribi tu consulta..." autocomplete="off"/><button type="submit">Enviar</button></form>
+<button id="abrir" class="abrir" type="button" aria-expanded="false" aria-controls="panel">Hablar con el agente</button>
+<div class="pie">Agente de Derito Digital</div>
+<div id="panel" class="panel oculto" role="region" aria-label="Chat con Agente Derito" aria-hidden="true" inert>
+  <div class="cab"><span class="est"><span class="dot"></span><b>Agente Derito</b></span><button id="cerrar" type="button" aria-label="Cerrar chat">×</button></div>
+  <div id="msgs" class="msgs" role="log" aria-live="polite" aria-relevant="additions text"><div class="m ag">Hola! Contame de tu negocio y te digo que te conviene.</div></div>
+  <form id="form"><label for="txt" class="sr-only">Escribí tu consulta</label><input id="txt" name="consulta" placeholder="Escribí tu consulta..." autocomplete="off"/><button type="submit">Enviar</button></form>
 </div>
 <script>
 var cuerpo = document.getElementById('cuerpo');
@@ -127,8 +133,10 @@ var txt = document.getElementById('txt');
 var pup = document.querySelectorAll('.pupila');
 var sid = 'demo-' + Math.random().toString(36).slice(2, 9);
 var abierto = false;
+var abrir = document.getElementById('abrir');
 
-document.addEventListener('pointermove', function(e){
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.addEventListener('pointermove', function(e){
+  if (e.pointerType === 'touch') return;
   var nx = (e.clientX / window.innerWidth) * 2 - 1;
   var ny = (e.clientY / window.innerHeight) * 2 - 1;
   cuerpo.style.transform = 'rotateX(' + (-ny * 11).toFixed(1) + 'deg) rotateY(' + (nx * 15).toFixed(1) + 'deg) translateX(' + (nx * 9).toFixed(1) + 'px)';
@@ -136,14 +144,19 @@ document.addEventListener('pointermove', function(e){
     pup[i].setAttribute('transform', 'translate(' + (nx * 5).toFixed(1) + ',' + (ny * 4).toFixed(1) + ')');
   }
 });
-document.addEventListener('pointerdown', function(){ alternar(); });
-function alternar(){
-  abierto = !abierto;
+function alternar(estado){
+  abierto = typeof estado === 'boolean' ? estado : !abierto;
   panel.classList.toggle('oculto', !abierto);
+  panel.setAttribute('aria-hidden', String(!abierto));
+  panel.inert = !abierto;
+  abrir.setAttribute('aria-expanded', String(abierto));
   globo.classList.toggle('oculto', abierto);
   if (abierto) setTimeout(function(){ txt.focus(); }, 350);
+  else abrir.focus();
 }
-document.getElementById('cerrar').addEventListener('click', function(e){ e.stopPropagation(); if (abierto) alternar(); });
+abrir.addEventListener('click', function(){ alternar(true); });
+document.getElementById('cerrar').addEventListener('click', function(){ alternar(false); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && abierto) alternar(false); });
 form.addEventListener('submit', function(e){
   e.preventDefault();
   var v = txt.value.trim(); if (!v) return;
