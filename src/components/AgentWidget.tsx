@@ -1,10 +1,13 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowUp, Minus, MessageCircle, X } from 'lucide-react'
+import { WHATSAPP_NUMBER } from '../lib/contact'
 
 type Intent = 'web' | 'ecommerce' | 'agent' | 'automation' | 'apps' | 'phone' | 'projects' | 'pricing' | 'custom'
 type ChatMessage = { role: 'user' | 'assistant'; content: string }
 type AgentSource = 'ai' | 'offline' | 'limit' | 'unknown'
 const API = 'https://chat.deritodigital.com.ar/api/chat'
+// Keep the real Worker unreachable from this candidate until security and spend reviews are approved.
+const REAL_AGENT_ENABLED = false
 const CHAT_HISTORY_STORAGE = 'derito-agent-history'
 const initialGreeting: ChatMessage = { role: 'assistant', content: '¡Hola! Soy el asistente virtual de Derito Digital. Contame qué querés mejorar en tu negocio y te oriento.' }
 const OFFLINE_REPLY = 'El asistente IA no está disponible ahora. Puedo derivarte a WhatsApp; contame brevemente qué necesitás.'
@@ -51,7 +54,7 @@ export function AgentWidget() {
   const abortRef = useRef<AbortController | null>(null)
 
   const wa = useMemo(() => {
-    const number = (import.meta.env.VITE_WHATSAPP_NUMBER || '').replace(/\D/g, '')
+    const number = WHATSAPP_NUMBER
     if (!number) return ''
     const defaultMessage = import.meta.env.VITE_WHATSAPP_DEFAULT_MESSAGE || 'Hola, vengo desde la web de Derito Digital.'
     const summary = messages.filter(m => m.role === 'user').slice(-5).map(m => m.content).join(' | ').slice(0, 700)
@@ -79,6 +82,16 @@ export function AgentWidget() {
     const controller = new AbortController(); abortRef.current = controller
     const timeout = window.setTimeout(() => controller.abort(), 12000)
     try {
+      if (!REAL_AGENT_ENABLED) {
+        const replyText = 'Gracias por contarme. Esta vista previa usa una respuesta simulada; para asesoramiento real, seguí por WhatsApp.'
+        setSource('offline'); setHandoff(true)
+        setMessages(current => {
+          const updated: ChatMessage[] = [...current, { role: 'assistant', content: replyText }]
+          saveHistory(updated)
+          return updated
+        })
+        return
+      }
       const response = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ session: sessionId(), message: text }), signal: controller.signal })
       const data = await response.json().catch(() => ({})) as { reply?: unknown; source?: unknown }
       if (!response.ok || typeof data.reply !== 'string' || !data.reply.trim()) throw new Error('service unavailable')
