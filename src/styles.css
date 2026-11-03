@@ -28,6 +28,11 @@
 .hero-proofline{display:flex;flex-wrap:wrap;gap:18px;color:#5c6268;font-size:11px;font-weight:600}
 .hero-proofline span{display:flex;align-items:center;gap:7px}
 .hero-proofline i{width:7px;height:7px;border-radius:50%;background:#21c77b;box-shadow:0 0 0 4px rgba(33,199,123,.08)}
+.hero-offer{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 22px;padding:11px 18px;border-radius:16px;border:1px solid #bfcdf4;background:linear-gradient(110deg,rgba(255,255,255,.9),rgba(238,243,255,.9));box-shadow:0 12px 30px rgba(64,88,214,.13)}
+.hero-offer span{font-size:10px;font-weight:850;letter-spacing:.16em;color:#4359dc}
+.hero-offer strong{font-family:'Manrope',sans-serif;font-size:17px;font-weight:800;letter-spacing:-.02em;color:#1f2f57}
+.hero-offer em{font-style:normal;font-size:11px;font-weight:650;color:#66738e}
+@media(max-width:650px){.hero-offer{gap:7px;padding:10px 13px}.hero-offer strong{font-size:15px}.hero-offer em{width:100%}}
 
 .hero-demo-grid{
   position:absolute;inset:0;opacity:.12;
@@ -410,6 +415,11 @@ body{background:radial-gradient(ellipse at 84% 8%,rgba(64,88,214,.09),transparen
 .hero-proofline{display:flex;flex-wrap:wrap;gap:18px;color:#5c6268;font-size:11px;font-weight:600}
 .hero-proofline span{display:flex;align-items:center;gap:7px}
 .hero-proofline i{width:7px;height:7px;border-radius:50%;background:#21c77b;box-shadow:0 0 0 4px rgba(33,199,123,.08)}
+.hero-offer{display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 22px;padding:11px 18px;border-radius:16px;border:1px solid #bfcdf4;background:linear-gradient(110deg,rgba(255,255,255,.9),rgba(238,243,255,.9));box-shadow:0 12px 30px rgba(64,88,214,.13)}
+.hero-offer span{font-size:10px;font-weight:850;letter-spacing:.16em;color:#4359dc}
+.hero-offer strong{font-family:'Manrope',sans-serif;font-size:17px;font-weight:800;letter-spacing:-.02em;color:#1f2f57}
+.hero-offer em{font-style:normal;font-size:11px;font-weight:650;color:#66738e}
+@media(max-width:650px){.hero-offer{gap:7px;padding:10px 13px}.hero-offer strong{font-size:15px}.hero-offer em{width:100%}}
 
 .hero-demo-grid{
   position:absolute;inset:0;opacity:.12;
