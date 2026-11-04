@@ -60,8 +60,8 @@ export default function App() {
         <div className="hero-copy">
           <div className="hero-chip"><Zap size={13}/> ESTUDIO DIGITAL INDEPENDIENTE · ARGENTINA</div>
           <h1>Que te vean.<br/>Que te elijan.<br/><span>Que funcione.</span></h1>
-          <p>Tu web desde USD 290, entrega en 5 días. Incluye dominio, WhatsApp y diseño propio.</p>
-          <div className="hero-offer"><span>WEB EXPRESS</span><strong>Desde USD 290</strong><em>· 5 días hábiles · precio de lanzamiento</em></div>
+          <p>Tu web desde $ 390.000, entrega en 5 días. Incluye dominio, WhatsApp y diseño propio.</p>
+          <div className="hero-offer"><span>WEB EXPRESS</span><strong>Desde $ 390.000</strong><em>· 5 días hábiles · precio de lanzamiento</em></div>
           <div className="hero-actions">
             <WhatsAppButton className="btn btn-primary">Hablemos de tu proyecto <ArrowRight size={17}/></WhatsAppButton>
             <a className="btn btn-secondary" href="#proyectos">Explorar nuestro trabajo <ArrowRight size={17}/></a>
@@ -155,7 +155,7 @@ export default function App() {
           <article className="liquid-surface"><span className="eyebrow">02 / PROFESIONAL</span><h3>Una experiencia para vender mejor</h3><p>Para negocios que necesitan presentarse con claridad, mostrar servicios y recibir consultas.</p><ul><li>Diseño adaptado a la marca</li><li>Web institucional completa</li><li>Experiencia optimizada para móvil</li><li>Presupuesto y alcance acordados</li></ul><strong>Web institucional desde USD 490 · soporte opcional desde USD 35/mes</strong><WhatsAppButton intent="web" className="btn btn-secondary">Consultar profesional <ArrowRight size={16}/></WhatsAppButton></article>
           <article className="liquid-surface"><span className="eyebrow">03 / TIENDA</span><h3>Un canal de ventas propio</h3><p>Para marcas que requieren catálogo, compra online o una experiencia digital más desarrollada.</p><ul><li>Tienda online con medios de pago</li><li>Catálogo y gestión de productos</li><li>Experiencia optimizada para móvil</li><li>Integraciones presupuestadas por separado</li></ul><strong>Tienda online desde USD 790 · soporte opcional desde USD 50/mes</strong><WhatsAppButton intent="ecommerce" className="btn btn-secondary">Consultar tienda <ArrowRight size={16}/></WhatsAppButton></article>
           <article className="liquid-surface"><span className="eyebrow">03 / A MEDIDA</span><h3>Tu negocio, conectado</h3><p>Para operaciones que necesitan integrar sistemas, automatizaciones o agentes de IA.</p><ul><li>Relevamiento del proceso actual</li><li>Desarrollo de funciones específicas</li><li>Plan de integración y pruebas</li><li>Consumos y mantenimiento definidos</li></ul><strong>Proyecto a medida · alcance acordado</strong><WhatsAppButton intent="custom" className="btn btn-secondary">Hablar del proyecto <ArrowRight size={16}/></WhatsAppButton></article>
-        </div><p className="disclaimer">Referencias públicas sujetas a confirmación. Dominio, hosting, licencias, integraciones y consumos de terceros pueden cotizarse aparte.</p>
+        </div><p className="disclaimer">Valores en pesos argentinos, expresados como referencia de entrada. Dominio, hosting, licencias, integraciones y consumos de terceros pueden cotizarse aparte. Los servicios con abono mensual incluyen soporte y ajustes acordados, no cambios ilimitados.</p>
       </section>
 
       <section className="ownership-section" aria-labelledby="ownership-title">
