@@ -1,0 +1,25 @@
+name: Monitor website availability
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check canonical site
+        run: |
+          set -euo pipefail
+          body=$(mktemp)
+          code=$(curl -sSL --max-time 20 -o "$body" -w '%{http_code}' https://deritodigital.com.ar/)
+          echo "https://deritodigital.com.ar/ HTTP $code"
+          test "$code" = 200
+          grep -q 'Derito Digital' "$body"
+          grep -q 'assets/index-BthtzFvO.js' "$body"
+          for path in /assets/index-BthtzFvO.js /assets/index-DR_coHOk.css; do
+            code=$(curl -sSL --max-time 20 -o /dev/null -w '%{http_code}' "https://deritodigital.com.ar$path")
+            echo "$path HTTP $code"
+            test "$code" = 200
+          done
